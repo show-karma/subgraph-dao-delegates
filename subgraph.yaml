@@ -1,0 +1,41 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ENSToken
+    network: mainnet
+    source:
+      address: "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72"
+      abi: ENSToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Claim
+        - DelegateChanged
+        - DelegateVotesChanged
+        - MerkleRootChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: ENSToken
+          file: ./abis/ENSToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Claim(indexed address,uint256)
+          handler: handleClaim
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+        - event: MerkleRootChanged(bytes32)
+          handler: handleMerkleRootChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
