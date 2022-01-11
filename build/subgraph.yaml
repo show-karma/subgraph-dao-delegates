@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: ENSToken
@@ -18,13 +18,13 @@ dataSources:
         - Delegator
       abis:
         - name: ENSToken
-          file: ./abis/ENSToken.json
+          file: ENSToken/abis/ENSToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-      file: ./src/ens_mapping.ts
+      file: ENSToken/ENSToken.wasm
   - kind: ethereum/contract
     name: GitcoinToken
     network: mainnet
@@ -41,10 +41,10 @@ dataSources:
         - Delegator
       abis:
         - name: GitcoinToken
-          file: ./abis/GitcoinToken.json
+          file: GitcoinToken/abis/GitcoinToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-      file: ./src/gitcoin_mapping.ts
+      file: GitcoinToken/GitcoinToken.wasm
