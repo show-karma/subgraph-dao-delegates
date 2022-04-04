@@ -48,3 +48,72 @@ dataSources:
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
       file: GitcoinToken/GitcoinToken.wasm
+  - kind: ethereum/contract
+    name: IndexToken
+    network: mainnet
+    source:
+      address: "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      abi: IndexToken
+      startBlock: 11000400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: IndexToken
+          file: IndexToken/abis/IndexToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: IndexToken/IndexToken.wasm
+  - kind: ethereum/contract
+    name: PoolTogetherToken
+    network: mainnet
+    source:
+      address: "0x0cec1a9154ff802e7934fc916ed7ca50bde6844e"
+      abi: PoolTogetherToken
+      startBlock: 11870113
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: PoolTogetherToken
+          file: PoolTogetherToken/abis/PoolTogetherToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: PoolTogetherToken/PoolTogetherToken.wasm
+  - kind: ethereum/contract
+    name: UniswapToken
+    network: mainnet
+    source:
+      address: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+      abi: UniswapToken
+      startBlock: 10861674
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: UniswapToken
+          file: UniswapToken/abis/UniswapToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: UniswapToken/UniswapToken.wasm
