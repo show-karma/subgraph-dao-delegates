@@ -8,7 +8,7 @@ import {
 import { DelegateChanged, DelegateVotesChanged } from "../generated/RariToken/RariToken"
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("rari")
+  let organization = new Organization("raricapital")
   organization.token = "rari"
   organization.save()
 
@@ -26,7 +26,7 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("rari")
+  let organization = new Organization("raricapital")
   organization.token = "rari"
   organization.save()
 
