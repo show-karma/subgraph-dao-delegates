@@ -6,7 +6,7 @@ import {
 } from "../generated/schema"
 import { DelegateChanged, DelegateVotesChanged } from "../generated/IndexedToken/IndexedToken"
 
-const dao = 'ndx.eth';
+const dao = 'indexed';
 const token = 'ndx';
 
 export function delegateChanged(event: DelegateChanged): void {
