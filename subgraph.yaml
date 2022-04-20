@@ -141,12 +141,35 @@ dataSources:
           handler: delegateVotesChanged
       file: ./src/rari_mapping.ts
   - kind: ethereum/contract
-    name: CompoundGovernanceToken
+    name: IndexedToken
     network: mainnet
     source:
-      address: "0xc00e94Cb662C3520282E6f5717214004A7f26888"
-      abi: CompoundGovernanceToken
-      startBlock: 9601359
+      address: "0x86772b1409b61c639eaac9ba0acfbb6e238e5f83"
+      abi: IndexedToken
+      startBlock: 11457421
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: IndexedToken
+          file: ./abis/IndexedToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: ./src/indexed_mapping.ts
+  - kind: ethereum/contract
+      name: CompoundGovernanceToken
+      network: mainnet
+      source:
+        address: "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+        abi: CompoundGovernanceToken
+        startBlock: 9601359
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
