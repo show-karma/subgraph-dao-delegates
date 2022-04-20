@@ -290,7 +290,9 @@ export class ENSToken extends ethereum.SmartContract {
       ]
     );
 
-    return result[0].toTuple() as ENSToken__checkpointsResultValue0Struct;
+    return changetype<ENSToken__checkpointsResultValue0Struct>(
+      result[0].toTuple()
+    );
   }
 
   try_checkpoints(
@@ -310,7 +312,7 @@ export class ENSToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTuple() as ENSToken__checkpointsResultValue0Struct
+      changetype<ENSToken__checkpointsResultValue0Struct>(value[0].toTuple())
     );
   }
 
