@@ -290,9 +290,7 @@ export class IndexToken extends ethereum.SmartContract {
       ]
     );
 
-    return changetype<IndexToken__checkpointsResultValue0Struct>(
-      result[0].toTuple()
-    );
+    return result[0].toTuple() as IndexToken__checkpointsResultValue0Struct;
   }
 
   try_checkpoints(
@@ -312,7 +310,7 @@ export class IndexToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<IndexToken__checkpointsResultValue0Struct>(value[0].toTuple())
+      value[0].toTuple() as IndexToken__checkpointsResultValue0Struct
     );
   }
 
