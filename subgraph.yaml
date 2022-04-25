@@ -278,3 +278,26 @@ dataSources:
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
       file: ./src/yamfinance_mapping.ts
+  - kind: ethereum/contract
+    name: CompoundGovernanceToken
+    network: mainnet
+    source:
+      address: "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+      abi: CompoundGovernanceToken
+      startBlock: 9601359
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: CompoundGovernanceToken
+          file: ./abis/CompoundGovernanceToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: ./src/compoundgovernance_mapping.ts
