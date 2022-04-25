@@ -232,3 +232,26 @@ dataSources:
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
       file: ./src/inversefinance_mapping.ts
+  - kind: ethereum/contract
+    name: FeiProtocolToken
+    network: mainnet
+    source:
+      address: "0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B"
+      abi: FeiProtocolToken
+      startBlock: 12125705
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: FeiProtocolToken
+          file: ./abis/FeiProtocolToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: ./src/feiprotocol_mapping.ts
