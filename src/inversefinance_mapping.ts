@@ -7,11 +7,11 @@ import {
 import {
   DelegateChanged,
   DelegateVotesChanged,
-} from "../generated/RariToken/RariToken";
+} from "../generated/InverseFinanceToken/InverseFinanceToken";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("raricapital");
-  organization.token = "rari";
+  let organization = new Organization("inversefinance");
+  organization.token = "inv";
   organization.save();
 
   let delegate = new User(event.params.toDelegate.toHexString());
@@ -30,8 +30,8 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("raricapital");
-  organization.token = "rari";
+  let organization = new Organization("inversefinance");
+  organization.token = "inv";
   organization.save();
 
   let user = new User(event.params.delegate.toHexString());
