@@ -6,7 +6,7 @@ import {
 } from "../generated/schema"
 import { DelegateChanged, DelegateVotesChanged } from "../generated/AmpleforthToken/AmpleforthToken"
 
-const dao = 'ampleforthorg.eth';
+const dao = 'ampleforth';
 const token = 'forth';
 
 export function delegateChanged(event: DelegateChanged): void {

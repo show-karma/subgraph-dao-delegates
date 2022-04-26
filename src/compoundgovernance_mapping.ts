@@ -10,7 +10,7 @@ import {
 } from "../generated/CompoundGovernanceToken/CompoundGovernanceToken";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("compoundgovernance");
+  let organization = new Organization("compound");
   organization.token = "comp";
   organization.save();
 
