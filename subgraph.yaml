@@ -208,7 +208,7 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-      file: ./src/ampleforth_mapping.ts 
+      file: ./src/ampleforth_mapping.ts
   - kind: ethereum/contract
     name: InverseFinanceToken
     network: mainnet
@@ -301,3 +301,26 @@ dataSources:
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
       file: ./src/compoundgovernance_mapping.ts
+  - kind: ethereum/contract
+    name: SushiSwapToken
+    network: mainnet
+    source:
+      address: "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2"
+      abi: SushiSwapToken
+      startBlock: 10736094
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: SushiSwapToken
+          file: ./abis/SushiSwapToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: ./src/sushiswap_mapping.ts
