@@ -30,7 +30,7 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("compoundgovernance");
+  let organization = new Organization("compound");
   organization.token = "comp";
   organization.save();
 
