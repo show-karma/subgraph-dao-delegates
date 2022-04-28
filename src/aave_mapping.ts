@@ -10,8 +10,8 @@ import {
 } from "../generated/AaveToken/AaveToken";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("aaev");
-  organization.token = "aaev";
+  let organization = new Organization("aave");
+  organization.token = "aave";
   organization.save();
 
   let delegate = new User(event.params.delegatee.toHexString());
@@ -30,8 +30,8 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegatedPowerChanged): void {
-  let organization = new Organization("aaev");
-  organization.token = "aaev";
+  let organization = new Organization("aave");
+  organization.token = "aave";
   organization.save();
 
   let user = new User(event.params.user.toHexString());
