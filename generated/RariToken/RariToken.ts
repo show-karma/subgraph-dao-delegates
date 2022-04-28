@@ -290,9 +290,7 @@ export class RariToken extends ethereum.SmartContract {
       ]
     );
 
-    return changetype<RariToken__checkpointsResultValue0Struct>(
-      result[0].toTuple()
-    );
+    return result[0].toTuple() as RariToken__checkpointsResultValue0Struct;
   }
 
   try_checkpoints(
@@ -312,7 +310,7 @@ export class RariToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<RariToken__checkpointsResultValue0Struct>(value[0].toTuple())
+      value[0].toTuple() as RariToken__checkpointsResultValue0Struct
     );
   }
 
