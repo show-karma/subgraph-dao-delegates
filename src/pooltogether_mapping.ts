@@ -6,6 +6,8 @@ import {
   DelegatorOrganization
 } from "../generated/schema"
 import { DelegateChanged, DelegateVotesChanged } from "../generated/PoolTogetherToken/PoolTogetherToken"
+import { getDelegateOrganization } from "./shared/getDelegateOrganization"
+import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt"
 
 export function delegateChanged(event: DelegateChanged): void {
   let organization = new Organization("pooltogether")
@@ -33,10 +35,15 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   let user = new User(event.params.delegate.toHexString())
   user.save();
 
-  let delegateOrganization = new DelegateOrganization(`${user.id}-${organization.id}`)
+  const delegateOrganizationId = `${user.id}-${organization.id}`;
+  const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
+
   delegateOrganization.delegate = user.id
   delegateOrganization.organization = organization.id
   delegateOrganization.voteBalance = event.params.newBalance
+
+  delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
+
   delegateOrganization.save()
 }
 
