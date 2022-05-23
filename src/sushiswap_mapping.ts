@@ -8,6 +8,8 @@ import {
   DelegateChanged,
   DelegateVotesChanged,
 } from "../generated/SushiSwapToken/SushiSwapToken";
+import { getDelegateOrganization } from "./shared/getDelegateOrganization";
+import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
 
 export function delegateChanged(event: DelegateChanged): void {
   let organization = new Organization("sushiswap");
@@ -37,11 +39,14 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   let user = new User(event.params.delegate.toHexString());
   user.save();
 
-  let delegateOrganization = new DelegateOrganization(
-    `${user.id}-${organization.id}`
-  );
+  const delegateOrganizationId = `${user.id}-${organization.id}`;
+  const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
+  
   delegateOrganization.delegate = user.id;
   delegateOrganization.organization = organization.id;
   delegateOrganization.voteBalance = event.params.newBalance;
+
+  delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
+
   delegateOrganization.save();
 }

@@ -171,6 +171,7 @@ export class DelegateOrganization extends Entity {
     this.set("delegate", Value.fromString(""));
     this.set("organization", Value.fromString(""));
     this.set("voteBalance", Value.fromBigInt(BigInt.zero()));
+    this.set("firstTokenDelegatedAt", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -226,6 +227,15 @@ export class DelegateOrganization extends Entity {
 
   set voteBalance(value: BigInt) {
     this.set("voteBalance", Value.fromBigInt(value));
+  }
+
+  get firstTokenDelegatedAt(): BigInt {
+    let value = this.get("firstTokenDelegatedAt");
+    return value!.toBigInt();
+  }
+
+  set firstTokenDelegatedAt(value: BigInt) {
+    this.set("firstTokenDelegatedAt", Value.fromBigInt(value));
   }
 }
 
