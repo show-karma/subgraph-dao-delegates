@@ -176,7 +176,7 @@ export class Transfer__Params {
   }
 }
 
-export class ENSToken__checkpointsResultValue0Struct extends ethereum.Tuple {
+export class HopExchangeToken__checkpointsResultValue0Struct extends ethereum.Tuple {
   get fromBlock(): BigInt {
     return this[0].toBigInt();
   }
@@ -186,9 +186,9 @@ export class ENSToken__checkpointsResultValue0Struct extends ethereum.Tuple {
   }
 }
 
-export class ENSToken extends ethereum.SmartContract {
-  static bind(address: Address): ENSToken {
-    return new ENSToken("ENSToken", address);
+export class HopExchangeToken extends ethereum.SmartContract {
+  static bind(address: Address): HopExchangeToken {
+    return new HopExchangeToken("HopExchangeToken", address);
   }
 
   DOMAIN_SEPARATOR(): Bytes {
@@ -280,7 +280,7 @@ export class ENSToken extends ethereum.SmartContract {
   checkpoints(
     account: Address,
     pos: BigInt
-  ): ENSToken__checkpointsResultValue0Struct {
+  ): HopExchangeToken__checkpointsResultValue0Struct {
     let result = super.call(
       "checkpoints",
       "checkpoints(address,uint32):((uint32,uint224))",
@@ -290,7 +290,7 @@ export class ENSToken extends ethereum.SmartContract {
       ]
     );
 
-    return changetype<ENSToken__checkpointsResultValue0Struct>(
+    return changetype<HopExchangeToken__checkpointsResultValue0Struct>(
       result[0].toTuple()
     );
   }
@@ -298,7 +298,7 @@ export class ENSToken extends ethereum.SmartContract {
   try_checkpoints(
     account: Address,
     pos: BigInt
-  ): ethereum.CallResult<ENSToken__checkpointsResultValue0Struct> {
+  ): ethereum.CallResult<HopExchangeToken__checkpointsResultValue0Struct> {
     let result = super.tryCall(
       "checkpoints",
       "checkpoints(address,uint32):((uint32,uint224))",
@@ -312,7 +312,9 @@ export class ENSToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<ENSToken__checkpointsResultValue0Struct>(value[0].toTuple())
+      changetype<HopExchangeToken__checkpointsResultValue0Struct>(
+        value[0].toTuple()
+      )
     );
   }
 
@@ -545,44 +547,6 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  minimumMintInterval(): BigInt {
-    let result = super.call(
-      "minimumMintInterval",
-      "minimumMintInterval():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_minimumMintInterval(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "minimumMintInterval",
-      "minimumMintInterval():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  mintCap(): BigInt {
-    let result = super.call("mintCap", "mintCap():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_mintCap(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("mintCap", "mintCap():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   name(): string {
     let result = super.call("name", "name():(string)", []);
 
@@ -596,21 +560,6 @@ export class ENSToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toString());
-  }
-
-  nextMint(): BigInt {
-    let result = super.call("nextMint", "nextMint():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_nextMint(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("nextMint", "nextMint():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   nonces(owner: Address): BigInt {
@@ -700,21 +649,18 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  transfer(recipient: Address, amount: BigInt): boolean {
+  transfer(to: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
-      ethereum.Value.fromAddress(recipient),
+      ethereum.Value.fromAddress(to),
       ethereum.Value.fromUnsignedBigInt(amount)
     ]);
 
     return result[0].toBoolean();
   }
 
-  try_transfer(
-    recipient: Address,
-    amount: BigInt
-  ): ethereum.CallResult<boolean> {
+  try_transfer(to: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
-      ethereum.Value.fromAddress(recipient),
+      ethereum.Value.fromAddress(to),
       ethereum.Value.fromUnsignedBigInt(amount)
     ]);
     if (result.reverted) {
@@ -724,13 +670,13 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  transferFrom(sender: Address, recipient: Address, amount: BigInt): boolean {
+  transferFrom(from: Address, to: Address, amount: BigInt): boolean {
     let result = super.call(
       "transferFrom",
       "transferFrom(address,address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(sender),
-        ethereum.Value.fromAddress(recipient),
+        ethereum.Value.fromAddress(from),
+        ethereum.Value.fromAddress(to),
         ethereum.Value.fromUnsignedBigInt(amount)
       ]
     );
@@ -739,16 +685,16 @@ export class ENSToken extends ethereum.SmartContract {
   }
 
   try_transferFrom(
-    sender: Address,
-    recipient: Address,
+    from: Address,
+    to: Address,
     amount: BigInt
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
       "transferFrom(address,address,uint256):(bool)",
       [
-        ethereum.Value.fromAddress(sender),
-        ethereum.Value.fromAddress(recipient),
+        ethereum.Value.fromAddress(from),
+        ethereum.Value.fromAddress(to),
         ethereum.Value.fromUnsignedBigInt(amount)
       ]
     );
@@ -833,6 +779,36 @@ export class ApproveCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
+  }
+}
+
+export class BurnCall extends ethereum.Call {
+  get inputs(): BurnCall__Inputs {
+    return new BurnCall__Inputs(this);
+  }
+
+  get outputs(): BurnCall__Outputs {
+    return new BurnCall__Outputs(this);
+  }
+}
+
+export class BurnCall__Inputs {
+  _call: BurnCall;
+
+  constructor(call: BurnCall) {
+    this._call = call;
+  }
+
+  get amount(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class BurnCall__Outputs {
+  _call: BurnCall;
+
+  constructor(call: BurnCall) {
+    this._call = call;
   }
 }
 
@@ -1221,7 +1197,7 @@ export class TransferCall__Inputs {
     this._call = call;
   }
 
-  get recipient(): Address {
+  get to(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
@@ -1259,11 +1235,11 @@ export class TransferFromCall__Inputs {
     this._call = call;
   }
 
-  get sender(): Address {
+  get from(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
-  get recipient(): Address {
+  get to(): Address {
     return this._call.inputValues[1].value.toAddress();
   }
 
