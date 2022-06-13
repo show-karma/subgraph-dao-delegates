@@ -12,7 +12,7 @@ import { getDelegateOrganization } from "./shared/getDelegateOrganization";
 import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("hope");
+  let organization = new Organization("hopexchange");
   organization.token = "hop";
   organization.save();
 
@@ -32,7 +32,7 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("hope");
+  let organization = new Organization("hopexchange");
   organization.token = "hop";
   organization.save();
 
