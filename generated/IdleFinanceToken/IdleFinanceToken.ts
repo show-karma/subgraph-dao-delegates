@@ -36,28 +36,6 @@ export class Approval__Params {
   }
 }
 
-export class Claim extends ethereum.Event {
-  get params(): Claim__Params {
-    return new Claim__Params(this);
-  }
-}
-
-export class Claim__Params {
-  _event: Claim;
-
-  constructor(event: Claim) {
-    this._event = event;
-  }
-
-  get claimant(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
 export class DelegateChanged extends ethereum.Event {
   get params(): DelegateChanged__Params {
     return new DelegateChanged__Params(this);
@@ -110,46 +88,6 @@ export class DelegateVotesChanged__Params {
   }
 }
 
-export class MerkleRootChanged extends ethereum.Event {
-  get params(): MerkleRootChanged__Params {
-    return new MerkleRootChanged__Params(this);
-  }
-}
-
-export class MerkleRootChanged__Params {
-  _event: MerkleRootChanged;
-
-  constructor(event: MerkleRootChanged) {
-    this._event = event;
-  }
-
-  get merkleRoot(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-}
-
-export class OwnershipTransferred extends ethereum.Event {
-  get params(): OwnershipTransferred__Params {
-    return new OwnershipTransferred__Params(this);
-  }
-}
-
-export class OwnershipTransferred__Params {
-  _event: OwnershipTransferred;
-
-  constructor(event: OwnershipTransferred) {
-    this._event = event;
-  }
-
-  get previousOwner(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get newOwner(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-}
-
 export class Transfer extends ethereum.Event {
   get params(): Transfer__Params {
     return new Transfer__Params(this);
@@ -176,19 +114,49 @@ export class Transfer__Params {
   }
 }
 
-export class ENSToken__checkpointsResultValue0Struct extends ethereum.Tuple {
-  get fromBlock(): BigInt {
-    return this[0].toBigInt();
+export class IdleFinanceToken__checkpointsResult {
+  value0: BigInt;
+  value1: BigInt;
+
+  constructor(value0: BigInt, value1: BigInt) {
+    this.value0 = value0;
+    this.value1 = value1;
   }
 
-  get votes(): BigInt {
-    return this[1].toBigInt();
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
+    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
+    return map;
   }
 }
 
-export class ENSToken extends ethereum.SmartContract {
-  static bind(address: Address): ENSToken {
-    return new ENSToken("ENSToken", address);
+export class IdleFinanceToken extends ethereum.SmartContract {
+  static bind(address: Address): IdleFinanceToken {
+    return new IdleFinanceToken("IdleFinanceToken", address);
+  }
+
+  DELEGATION_TYPEHASH(): Bytes {
+    let result = super.call(
+      "DELEGATION_TYPEHASH",
+      "DELEGATION_TYPEHASH():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_DELEGATION_TYPEHASH(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "DELEGATION_TYPEHASH",
+      "DELEGATION_TYPEHASH():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
   DOMAIN_SEPARATOR(): Bytes {
@@ -205,6 +173,52 @@ export class ENSToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  DOMAIN_TYPEHASH(): Bytes {
+    let result = super.call(
+      "DOMAIN_TYPEHASH",
+      "DOMAIN_TYPEHASH():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_DOMAIN_TYPEHASH(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "DOMAIN_TYPEHASH",
+      "DOMAIN_TYPEHASH():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  PERMIT_TYPEHASH(): Bytes {
+    let result = super.call(
+      "PERMIT_TYPEHASH",
+      "PERMIT_TYPEHASH():(bytes32)",
+      []
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_PERMIT_TYPEHASH(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "PERMIT_TYPEHASH",
+      "PERMIT_TYPEHASH():(bytes32)",
       []
     );
     if (result.reverted) {
@@ -278,33 +292,34 @@ export class ENSToken extends ethereum.SmartContract {
   }
 
   checkpoints(
-    account: Address,
-    pos: BigInt
-  ): ENSToken__checkpointsResultValue0Struct {
+    param0: Address,
+    param1: BigInt
+  ): IdleFinanceToken__checkpointsResult {
     let result = super.call(
       "checkpoints",
-      "checkpoints(address,uint32):((uint32,uint224))",
+      "checkpoints(address,uint32):(uint32,uint256)",
       [
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(pos)
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromUnsignedBigInt(param1)
       ]
     );
 
-    return changetype<ENSToken__checkpointsResultValue0Struct>(
-      result[0].toTuple()
+    return new IdleFinanceToken__checkpointsResult(
+      result[0].toBigInt(),
+      result[1].toBigInt()
     );
   }
 
   try_checkpoints(
-    account: Address,
-    pos: BigInt
-  ): ethereum.CallResult<ENSToken__checkpointsResultValue0Struct> {
+    param0: Address,
+    param1: BigInt
+  ): ethereum.CallResult<IdleFinanceToken__checkpointsResult> {
     let result = super.tryCall(
       "checkpoints",
-      "checkpoints(address,uint32):((uint32,uint224))",
+      "checkpoints(address,uint32):(uint32,uint256)",
       [
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(pos)
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromUnsignedBigInt(param1)
       ]
     );
     if (result.reverted) {
@@ -312,31 +327,11 @@ export class ENSToken extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<ENSToken__checkpointsResultValue0Struct>(value[0].toTuple())
+      new IdleFinanceToken__checkpointsResult(
+        value[0].toBigInt(),
+        value[1].toBigInt()
+      )
     );
-  }
-
-  claimPeriodEnds(): BigInt {
-    let result = super.call(
-      "claimPeriodEnds",
-      "claimPeriodEnds():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_claimPeriodEnds(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "claimPeriodEnds",
-      "claimPeriodEnds():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   decimals(): i32 {
@@ -386,17 +381,17 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  delegates(account: Address): Address {
+  delegates(delegator: Address): Address {
     let result = super.call("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(delegator)
     ]);
 
     return result[0].toAddress();
   }
 
-  try_delegates(account: Address): ethereum.CallResult<Address> {
+  try_delegates(delegator: Address): ethereum.CallResult<Address> {
     let result = super.tryCall("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(delegator)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -405,21 +400,21 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  getPastTotalSupply(blockNumber: BigInt): BigInt {
+  getCurrentVotes(account: Address): BigInt {
     let result = super.call(
-      "getPastTotalSupply",
-      "getPastTotalSupply(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      "getCurrentVotes",
+      "getCurrentVotes(address):(uint256)",
+      [ethereum.Value.fromAddress(account)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_getPastTotalSupply(blockNumber: BigInt): ethereum.CallResult<BigInt> {
+  try_getCurrentVotes(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
-      "getPastTotalSupply",
-      "getPastTotalSupply(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      "getCurrentVotes",
+      "getCurrentVotes(address):(uint256)",
+      [ethereum.Value.fromAddress(account)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -428,10 +423,10 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getPastVotes(account: Address, blockNumber: BigInt): BigInt {
+  getPriorVotes(account: Address, blockNumber: BigInt): BigInt {
     let result = super.call(
-      "getPastVotes",
-      "getPastVotes(address,uint256):(uint256)",
+      "getPriorVotes",
+      "getPriorVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
         ethereum.Value.fromUnsignedBigInt(blockNumber)
@@ -441,37 +436,18 @@ export class ENSToken extends ethereum.SmartContract {
     return result[0].toBigInt();
   }
 
-  try_getPastVotes(
+  try_getPriorVotes(
     account: Address,
     blockNumber: BigInt
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
-      "getPastVotes",
-      "getPastVotes(address,uint256):(uint256)",
+      "getPriorVotes",
+      "getPriorVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
         ethereum.Value.fromUnsignedBigInt(blockNumber)
       ]
     );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getVotes(account: Address): BigInt {
-    let result = super.call("getVotes", "getVotes(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_getVotes(account: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("getVotes", "getVotes(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
-    ]);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -511,78 +487,6 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  isClaimed(index: BigInt): boolean {
-    let result = super.call("isClaimed", "isClaimed(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(index)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_isClaimed(index: BigInt): ethereum.CallResult<boolean> {
-    let result = super.tryCall("isClaimed", "isClaimed(uint256):(bool)", [
-      ethereum.Value.fromUnsignedBigInt(index)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  merkleRoot(): Bytes {
-    let result = super.call("merkleRoot", "merkleRoot():(bytes32)", []);
-
-    return result[0].toBytes();
-  }
-
-  try_merkleRoot(): ethereum.CallResult<Bytes> {
-    let result = super.tryCall("merkleRoot", "merkleRoot():(bytes32)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  minimumMintInterval(): BigInt {
-    let result = super.call(
-      "minimumMintInterval",
-      "minimumMintInterval():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_minimumMintInterval(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "minimumMintInterval",
-      "minimumMintInterval():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  mintCap(): BigInt {
-    let result = super.call("mintCap", "mintCap():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_mintCap(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("mintCap", "mintCap():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   name(): string {
     let result = super.call("name", "name():(string)", []);
 
@@ -598,32 +502,17 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  nextMint(): BigInt {
-    let result = super.call("nextMint", "nextMint():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_nextMint(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("nextMint", "nextMint():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  nonces(owner: Address): BigInt {
+  nonces(param0: Address): BigInt {
     let result = super.call("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(owner)
+      ethereum.Value.fromAddress(param0)
     ]);
 
     return result[0].toBigInt();
   }
 
-  try_nonces(owner: Address): ethereum.CallResult<BigInt> {
+  try_nonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(owner)
+      ethereum.Value.fromAddress(param0)
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -632,21 +521,21 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  numCheckpoints(account: Address): BigInt {
+  numCheckpoints(param0: Address): BigInt {
     let result = super.call(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(param0)]
     );
 
     return result[0].toBigInt();
   }
 
-  try_numCheckpoints(account: Address): ethereum.CallResult<BigInt> {
+  try_numCheckpoints(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(param0)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -655,19 +544,25 @@ export class ENSToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  owner(): Address {
-    let result = super.call("owner", "owner():(address)", []);
+  permitNonces(param0: Address): BigInt {
+    let result = super.call("permitNonces", "permitNonces(address):(uint256)", [
+      ethereum.Value.fromAddress(param0)
+    ]);
 
-    return result[0].toAddress();
+    return result[0].toBigInt();
   }
 
-  try_owner(): ethereum.CallResult<Address> {
-    let result = super.tryCall("owner", "owner():(address)", []);
+  try_permitNonces(param0: Address): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "permitNonces",
+      "permitNonces(address):(uint256)",
+      [ethereum.Value.fromAddress(param0)]
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   symbol(): string {
@@ -758,6 +653,21 @@ export class ENSToken extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
+
+  version(): string {
+    let result = super.call("version", "version():(string)", []);
+
+    return result[0].toString();
+  }
+
+  try_version(): ethereum.CallResult<string> {
+    let result = super.tryCall("version", "version():(string)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toString());
+  }
 }
 
 export class ConstructorCall extends ethereum.Call {
@@ -775,18 +685,6 @@ export class ConstructorCall__Inputs {
 
   constructor(call: ConstructorCall) {
     this._call = call;
-  }
-
-  get freeSupply(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get airdropSupply(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get _claimPeriodEnds(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
   }
 }
 
@@ -833,44 +731,6 @@ export class ApproveCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
-  }
-}
-
-export class ClaimTokensCall extends ethereum.Call {
-  get inputs(): ClaimTokensCall__Inputs {
-    return new ClaimTokensCall__Inputs(this);
-  }
-
-  get outputs(): ClaimTokensCall__Outputs {
-    return new ClaimTokensCall__Outputs(this);
-  }
-}
-
-export class ClaimTokensCall__Inputs {
-  _call: ClaimTokensCall;
-
-  constructor(call: ClaimTokensCall) {
-    this._call = call;
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get delegate(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get merkleProof(): Array<Bytes> {
-    return this._call.inputValues[2].value.toBytesArray();
-  }
-}
-
-export class ClaimTokensCall__Outputs {
-  _call: ClaimTokensCall;
-
-  constructor(call: ClaimTokensCall) {
-    this._call = call;
   }
 }
 
@@ -1030,40 +890,6 @@ export class IncreaseAllowanceCall__Outputs {
   }
 }
 
-export class MintCall extends ethereum.Call {
-  get inputs(): MintCall__Inputs {
-    return new MintCall__Inputs(this);
-  }
-
-  get outputs(): MintCall__Outputs {
-    return new MintCall__Outputs(this);
-  }
-}
-
-export class MintCall__Inputs {
-  _call: MintCall;
-
-  constructor(call: MintCall) {
-    this._call = call;
-  }
-
-  get dest(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class MintCall__Outputs {
-  _call: MintCall;
-
-  constructor(call: MintCall) {
-    this._call = call;
-  }
-}
-
 export class PermitCall extends ethereum.Call {
   get inputs(): PermitCall__Inputs {
     return new PermitCall__Inputs(this);
@@ -1114,92 +940,6 @@ export class PermitCall__Outputs {
   _call: PermitCall;
 
   constructor(call: PermitCall) {
-    this._call = call;
-  }
-}
-
-export class RenounceOwnershipCall extends ethereum.Call {
-  get inputs(): RenounceOwnershipCall__Inputs {
-    return new RenounceOwnershipCall__Inputs(this);
-  }
-
-  get outputs(): RenounceOwnershipCall__Outputs {
-    return new RenounceOwnershipCall__Outputs(this);
-  }
-}
-
-export class RenounceOwnershipCall__Inputs {
-  _call: RenounceOwnershipCall;
-
-  constructor(call: RenounceOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class RenounceOwnershipCall__Outputs {
-  _call: RenounceOwnershipCall;
-
-  constructor(call: RenounceOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class SetMerkleRootCall extends ethereum.Call {
-  get inputs(): SetMerkleRootCall__Inputs {
-    return new SetMerkleRootCall__Inputs(this);
-  }
-
-  get outputs(): SetMerkleRootCall__Outputs {
-    return new SetMerkleRootCall__Outputs(this);
-  }
-}
-
-export class SetMerkleRootCall__Inputs {
-  _call: SetMerkleRootCall;
-
-  constructor(call: SetMerkleRootCall) {
-    this._call = call;
-  }
-
-  get _merkleRoot(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-}
-
-export class SetMerkleRootCall__Outputs {
-  _call: SetMerkleRootCall;
-
-  constructor(call: SetMerkleRootCall) {
-    this._call = call;
-  }
-}
-
-export class SweepCall extends ethereum.Call {
-  get inputs(): SweepCall__Inputs {
-    return new SweepCall__Inputs(this);
-  }
-
-  get outputs(): SweepCall__Outputs {
-    return new SweepCall__Outputs(this);
-  }
-}
-
-export class SweepCall__Inputs {
-  _call: SweepCall;
-
-  constructor(call: SweepCall) {
-    this._call = call;
-  }
-
-  get dest(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class SweepCall__Outputs {
-  _call: SweepCall;
-
-  constructor(call: SweepCall) {
     this._call = call;
   }
 }
@@ -1281,35 +1021,5 @@ export class TransferFromCall__Outputs {
 
   get value0(): boolean {
     return this._call.outputValues[0].value.toBoolean();
-  }
-}
-
-export class TransferOwnershipCall extends ethereum.Call {
-  get inputs(): TransferOwnershipCall__Inputs {
-    return new TransferOwnershipCall__Inputs(this);
-  }
-
-  get outputs(): TransferOwnershipCall__Outputs {
-    return new TransferOwnershipCall__Outputs(this);
-  }
-}
-
-export class TransferOwnershipCall__Inputs {
-  _call: TransferOwnershipCall;
-
-  constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-
-  get newOwner(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class TransferOwnershipCall__Outputs {
-  _call: TransferOwnershipCall;
-
-  constructor(call: TransferOwnershipCall) {
-    this._call = call;
   }
 }

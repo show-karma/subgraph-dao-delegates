@@ -6,7 +6,6 @@ import {
   Value,
   ValueKind,
   store,
-  Address,
   Bytes,
   BigInt,
   BigDecimal
@@ -16,8 +15,6 @@ export class Organization extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("token", Value.fromString(""));
   }
 
   save(): void {
@@ -26,8 +23,7 @@ export class Organization extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save Organization entity with non-string ID. " +
-          'Considering using .toHex() to convert the "id" to a string.'
+        `Entities of type Organization must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
       store.set("Organization", id.toString(), this);
     }
@@ -102,8 +98,7 @@ export class User extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save User entity with non-string ID. " +
-          'Considering using .toHex() to convert the "id" to a string.'
+        `Entities of type User must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
       store.set("User", id.toString(), this);
     }
@@ -167,11 +162,6 @@ export class DelegateOrganization extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("delegate", Value.fromString(""));
-    this.set("organization", Value.fromString(""));
-    this.set("voteBalance", Value.fromBigInt(BigInt.zero()));
-    this.set("firstTokenDelegatedAt", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -180,8 +170,7 @@ export class DelegateOrganization extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save DelegateOrganization entity with non-string ID. " +
-          'Considering using .toHex() to convert the "id" to a string.'
+        `Entities of type DelegateOrganization must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
       store.set("DelegateOrganization", id.toString(), this);
     }
@@ -243,10 +232,6 @@ export class DelegatorOrganization extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("delegator", Value.fromString(""));
-    this.set("delegate", Value.fromString(""));
-    this.set("organization", Value.fromString(""));
   }
 
   save(): void {
@@ -258,8 +243,7 @@ export class DelegatorOrganization extends Entity {
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save DelegatorOrganization entity with non-string ID. " +
-          'Considering using .toHex() to convert the "id" to a string.'
+        `Entities of type DelegatorOrganization must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
       store.set("DelegatorOrganization", id.toString(), this);
     }
