@@ -7,9 +7,8 @@ export function getFirstTokenDelegatedAt(
   delegateOrganization: DelegateOrganization
 ): BigInt {
   if (
-    !delegateOrganization.firstTokenDelegatedAt ||
     BigInt.compare(
-      delegateOrganization.firstTokenDelegatedAt!,
+      delegateOrganization.firstTokenDelegatedAt,
       BigInt.zero()
     ) === 0
   ) {
