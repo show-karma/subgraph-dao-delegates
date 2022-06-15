@@ -7,6 +7,7 @@ export function getFirstTokenDelegatedAt(
   delegateOrganization: DelegateOrganization
 ): BigInt {
   if (
+    !delegateOrganization.firstTokenDelegatedAt ||
     BigInt.compare(
       delegateOrganization.firstTokenDelegatedAt,
       BigInt.zero()
@@ -15,5 +16,5 @@ export function getFirstTokenDelegatedAt(
     return event.block.timestamp;
   }
 
-  return delegateOrganization.firstTokenDelegatedAt!;
+  return delegateOrganization.firstTokenDelegatedAt;
 }
