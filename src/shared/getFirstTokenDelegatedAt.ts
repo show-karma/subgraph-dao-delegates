@@ -9,12 +9,12 @@ export function getFirstTokenDelegatedAt(
   if (
     !delegateOrganization.firstTokenDelegatedAt ||
     BigInt.compare(
-      delegateOrganization.firstTokenDelegatedAt,
+      delegateOrganization.firstTokenDelegatedAt!,
       BigInt.zero()
     ) === 0
   ) {
     return event.block.timestamp;
   }
 
-  return delegateOrganization.firstTokenDelegatedAt;
+  return delegateOrganization.firstTokenDelegatedAt!;
 }
