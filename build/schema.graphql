@@ -8,7 +8,8 @@ type Organization @entity {
 type User @entity {
   id: ID!
   delegateorganizations: [DelegateOrganization!] @derivedFrom(field: "delegate")
-  delegatororganizations: [DelegatorOrganization!] @derivedFrom(field: "delegator")
+  delegatororganizations: [DelegatorOrganization!]
+    @derivedFrom(field: "delegator")
 }
 
 type DelegateOrganization @entity {
@@ -16,7 +17,7 @@ type DelegateOrganization @entity {
   delegate: User!
   organization: Organization!
   voteBalance: BigInt!
-  firstTokenDelegatedAt: BigInt!
+  firstTokenDelegatedAt: BigInt
 }
 
 type DelegatorOrganization @entity {
@@ -25,4 +26,3 @@ type DelegatorOrganization @entity {
   delegate: User!
   organization: Organization!
 }
-

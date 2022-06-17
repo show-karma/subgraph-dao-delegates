@@ -218,13 +218,21 @@ export class DelegateOrganization extends Entity {
     this.set("voteBalance", Value.fromBigInt(value));
   }
 
-  get firstTokenDelegatedAt(): BigInt {
+  get firstTokenDelegatedAt(): BigInt | null {
     let value = this.get("firstTokenDelegatedAt");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set firstTokenDelegatedAt(value: BigInt) {
-    this.set("firstTokenDelegatedAt", Value.fromBigInt(value));
+  set firstTokenDelegatedAt(value: BigInt | null) {
+    if (!value) {
+      this.unset("firstTokenDelegatedAt");
+    } else {
+      this.set("firstTokenDelegatedAt", Value.fromBigInt(<BigInt>value));
+    }
   }
 }
 
