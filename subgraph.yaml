@@ -393,3 +393,26 @@ dataSources:
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
       file: ./src/idle_mapping.ts
+  - kind: ethereum/contract
+    name: DYDXToken
+    network: mainnet
+    source:
+      address: "0x92d6c1e31e14520e676a687f0a93788b716beff5"
+      abi: DYDXToken
+      startBlock: 12809555
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: DYDXToken
+          file: ./abis/DyDxToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,uint8)
+          handler: delegateChanged
+        - event: DelegatedPowerChanged(indexed address,uint256,uint8)
+          handler: delegateVotesChanged
+      file: ./src/dydx_mapping.ts
