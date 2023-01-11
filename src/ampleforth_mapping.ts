@@ -2,7 +2,8 @@ import {
   Organization,
   User,
   DelegateOrganization,
-  DelegatorOrganization
+  DelegatorOrganization,
+  DelegateVotingPowerChange
 } from "../generated/schema"
 import { DelegateChanged, DelegateVotesChanged } from "../generated/AmpleforthToken/AmpleforthToken"
 import { getDelegateOrganization } from "./shared/getDelegateOrganization";
@@ -47,4 +48,17 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
   delegateOrganization.save()
+
+  const delegatePowerChange = new DelegateVotingPowerChange(
+    event.transaction.hash.toHexString()
+  );
+
+  delegatePowerChange.previousBalance = event.params.previousBalance;
+  delegatePowerChange.newBalance = event.params.newBalance;
+  delegatePowerChange.delegate = event.params.delegate.toHexString();
+  delegatePowerChange.tokenAddress = event.address.toHexString();
+  delegatePowerChange.txnHash = event.transaction.hash.toHexString();
+  delegatePowerChange.blockTimestamp = event.block.timestamp;
+  delegatePowerChange.blockNumber = event.block.number;
+  delegatePowerChange.save();
 }

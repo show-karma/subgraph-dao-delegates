@@ -11,6 +11,7 @@ import {
   User,
   DelegateOrganization,
   DelegatorOrganization,
+  DelegateVotingPowerChange
 } from "../generated/schema";
 import {
   DelegateChanged,
@@ -60,4 +61,17 @@ export function delegateVotesChanged(event: DelegatedPowerChanged): void {
   );
 
   delegateOrganization.save();
+
+  const delegatePowerChange = new DelegateVotingPowerChange(
+    event.transaction.hash.toHexString()
+  );
+
+  delegatePowerChange.previousBalance = BigInt.fromI32(0);
+  delegatePowerChange.newBalance = event.params.amount;
+  delegatePowerChange.delegate = user.id;
+  delegatePowerChange.tokenAddress = event.address.toHexString();
+  delegatePowerChange.txnHash = event.transaction.hash.toHexString();
+  delegatePowerChange.blockTimestamp = event.block.timestamp;
+  delegatePowerChange.blockNumber = event.block.number;
+  delegatePowerChange.save();
 }

@@ -26,3 +26,14 @@ type DelegatorOrganization @entity {
   delegate: User!
   organization: Organization!
 }
+
+type DelegateVotingPowerChange @entity {
+  id: ID!
+  tokenAddress: String!
+  delegate: String!
+  previousBalance: BigInt!
+  newBalance: BigInt!
+  blockTimestamp: BigInt!
+  txnHash: String!
+  blockNumber: BigInt!
+}

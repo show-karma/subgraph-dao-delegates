@@ -3,6 +3,7 @@ import {
   User,
   DelegateOrganization,
   DelegatorOrganization,
+  DelegateVotingPowerChange
 } from "../generated/schema";
 import {
   DelegateChanged,
@@ -10,6 +11,7 @@ import {
 } from "../generated/AaveToken/AaveToken";
 import { getDelegateOrganization } from "./shared/getDelegateOrganization";
 import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 export function delegateChanged(event: DelegateChanged): void {
   let organization = new Organization("aave");
@@ -49,4 +51,17 @@ export function delegateVotesChanged(event: DelegatedPowerChanged): void {
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
   delegateOrganization.save();
+
+  const delegatePowerChange = new DelegateVotingPowerChange(
+    event.transaction.hash.toHexString()
+  );
+
+  delegatePowerChange.previousBalance = BigInt.fromI32(0);
+  delegatePowerChange.newBalance = event.params.amount;
+  delegatePowerChange.delegate = user.id;
+  delegatePowerChange.tokenAddress = event.address.toHexString();
+  delegatePowerChange.txnHash = event.transaction.hash.toHexString();
+  delegatePowerChange.blockTimestamp = event.block.timestamp;
+  delegatePowerChange.blockNumber = event.block.number;
+  delegatePowerChange.save();
 }

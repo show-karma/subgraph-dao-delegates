@@ -3,6 +3,7 @@ import {
   User,
   DelegateOrganization,
   DelegatorOrganization,
+  DelegateVotingPowerChange
 } from "../generated/schema";
 import {
   DelegateChanged,
@@ -49,4 +50,17 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
   delegateOrganization.save();
+
+  const delegatePowerChange = new DelegateVotingPowerChange(
+    event.transaction.hash.toHexString()
+  );
+
+  delegatePowerChange.previousBalance = event.params.previousBalance;
+  delegatePowerChange.newBalance = event.params.newBalance;
+  delegatePowerChange.delegate = event.params.delegate.toHexString();
+  delegatePowerChange.tokenAddress = event.address.toHexString();
+  delegatePowerChange.txnHash = event.transaction.hash.toHexString();
+  delegatePowerChange.blockTimestamp = event.block.timestamp;
+  delegatePowerChange.blockNumber = event.block.number;
+  delegatePowerChange.save();
 }
