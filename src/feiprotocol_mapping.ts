@@ -10,6 +10,9 @@ import {
 } from "../generated/FeiProtocolToken/FeiProtocolToken";
 import { getDelegateOrganization } from "./shared/getDelegateOrganization";
 import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+import { getDelegatingHistory } from "./shared/getDelegatingHistory";
+import { calculateDelegatorVoteBalance } from "./shared/delegatorVoteBalance";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 export function delegateChanged(event: DelegateChanged): void {
   let organization = new Organization("feiprotocol");
@@ -28,7 +31,15 @@ export function delegateChanged(event: DelegateChanged): void {
   delegatorOrganization.delegate = delegate.id;
   delegatorOrganization.delegator = delegator.id;
   delegatorOrganization.organization = organization.id;
+  delegatorOrganization.delegatedVotes = BigInt.zero();
   delegatorOrganization.save();
+
+  getDelegatingHistory(
+    event.transaction.hash.toHexString(),
+    event.params.toDelegate.toHexString(),
+    event.params.delegator.toHexString(),
+    event.block.timestamp
+  );
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
@@ -46,7 +57,19 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegateOrganization.organization = organization.id;
   delegateOrganization.voteBalance = event.params.newBalance;
 
-  delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
-  
+  delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(
+    event,
+    delegateOrganization
+  );
+
   delegateOrganization.save();
+
+  calculateDelegatorVoteBalance(
+    user,
+    organization,
+    event.transaction.hash.toHexString() as string,
+    event.params.newBalance,
+    event.params.previousBalance,
+    event.params.delegate.toHexString() as string
+  );
 }

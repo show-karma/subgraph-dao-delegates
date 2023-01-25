@@ -25,4 +25,23 @@ type DelegatorOrganization @entity {
   delegator: User!
   delegate: User!
   organization: Organization!
+  delegatedVotes: BigInt!
+}
+
+type DelegatingHistory @entity {
+  id: String!
+  delegate: String!
+  delegator: String!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type Transaction @entity {
+  id: String!
+  delegate: String!
+  amount: BigInt!
+  timestamp: BigInt!
+  oldBalance: BigInt!
+  newBalance: BigInt!
+  address: String!
 }
