@@ -399,3 +399,105 @@ export class DelegateVotingPowerChange extends Entity {
     this.set("blockNumber", Value.fromBigInt(value));
   }
 }
+
+export class DelegateChange extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save DelegateChange entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type DelegateChange must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("DelegateChange", id.toString(), this);
+    }
+  }
+
+  static load(id: string): DelegateChange | null {
+    return changetype<DelegateChange | null>(store.get("DelegateChange", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get oldDelegate(): string | null {
+    let value = this.get("oldDelegate");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set oldDelegate(value: string | null) {
+    if (!value) {
+      this.unset("oldDelegate");
+    } else {
+      this.set("oldDelegate", Value.fromString(<string>value));
+    }
+  }
+
+  get newDelegate(): string | null {
+    let value = this.get("newDelegate");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set newDelegate(value: string | null) {
+    if (!value) {
+      this.unset("newDelegate");
+    } else {
+      this.set("newDelegate", Value.fromString(<string>value));
+    }
+  }
+
+  get delegator(): string {
+    let value = this.get("delegator");
+    return value!.toString();
+  }
+
+  set delegator(value: string) {
+    this.set("delegator", Value.fromString(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value!.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get txnHash(): string {
+    let value = this.get("txnHash");
+    return value!.toString();
+  }
+
+  set txnHash(value: string) {
+    this.set("txnHash", Value.fromString(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value!.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+}

@@ -4,7 +4,8 @@ import {
   User,
   DelegateOrganization,
   DelegatorOrganization,
-  DelegateVotingPowerChange
+  DelegateVotingPowerChange,
+  DelegateChange
 } from "../generated/schema"
 import { DelegateChanged, DelegateVotesChanged } from "../generated/PoolTogetherToken/PoolTogetherToken"
 import { getDelegateOrganization } from "./shared/getDelegateOrganization"
@@ -25,7 +26,16 @@ export function delegateChanged(event: DelegateChanged): void {
   delegatorOrganization.delegate = delegate.id
   delegatorOrganization.delegator = delegator.id
   delegatorOrganization.organization = organization.id
-  delegatorOrganization.save()
+  delegatorOrganization.save();
+
+  const delegateChange = new DelegateChange(event.transaction.hash.toHexString());
+  delegateChange.oldDelegate = event.params.fromDelegate.toHexString(),
+  delegateChange.newDelegate = event.params.toDelegate.toHexString(),
+  delegateChange.delegator = event.params.delegator.toHexString(),
+  delegateChange.blockTimestamp = event.block.timestamp,
+  delegateChange.txnHash = event.transaction.hash.toHexString(),
+  delegateChange.blockNumber = event.block.number,
+  delegateChange.save();
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
