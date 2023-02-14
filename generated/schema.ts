@@ -501,3 +501,98 @@ export class DelegateChange extends Entity {
     this.set("blockNumber", Value.fromBigInt(value));
   }
 }
+
+export class DelegatingHistory extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save DelegatingHistory entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type DelegatingHistory must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("DelegatingHistory", id.toString(), this);
+    }
+  }
+
+  static load(id: string): DelegatingHistory | null {
+    return changetype<DelegatingHistory | null>(
+      store.get("DelegatingHistory", id)
+    );
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get fromDelegate(): string | null {
+    let value = this.get("fromDelegate");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set fromDelegate(value: string | null) {
+    if (!value) {
+      this.unset("fromDelegate");
+    } else {
+      this.set("fromDelegate", Value.fromString(<string>value));
+    }
+  }
+
+  get toDelegate(): string | null {
+    let value = this.get("toDelegate");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set toDelegate(value: string | null) {
+    if (!value) {
+      this.unset("toDelegate");
+    } else {
+      this.set("toDelegate", Value.fromString(<string>value));
+    }
+  }
+
+  get delegator(): string {
+    let value = this.get("delegator");
+    return value!.toString();
+  }
+
+  set delegator(value: string) {
+    this.set("delegator", Value.fromString(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
+    return value!.toBigInt();
+  }
+
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
+  }
+}

@@ -1,14 +1,15 @@
 import {
   Organization,
   User,
-  DelegateOrganization,
   DelegatorOrganization,
   DelegateVotingPowerChange,
-  DelegateChange
+  DelegateChange,
+  DelegatingHistory
 } from "../generated/schema"
-import { DelegateChanged, DelegateVotesChanged } from "../generated/AmpleforthToken/AmpleforthToken"
+import { DelegateChanged, DelegateVotesChanged, Transfer } from "../generated/AmpleforthToken/AmpleforthToken"
 import { getDelegateOrganization } from "./shared/getDelegateOrganization";
 import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 const dao = 'ampleforth';
 const token = 'forth';
@@ -28,7 +29,21 @@ export function delegateChanged(event: DelegateChanged): void {
   delegatorOrganization.delegate = delegate.id
   delegatorOrganization.delegator = delegator.id
   delegatorOrganization.organization = organization.id
-  delegatorOrganization.save()
+
+  let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
+
+  if(!delegatingHistory){
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory.amount = BigInt.zero();
+    delegatingHistory.timestamp = event.block.timestamp;
+  }
+
+  delegatingHistory.fromDelegate = event.params.fromDelegate.toHexString();
+  delegatingHistory.toDelegate = event.params.toDelegate.toHexString();
+  delegatingHistory.delegator = delegator.id;
+
+  delegatingHistory.save();
+  delegatorOrganization.save();
 
   const delegateChange = new DelegateChange(event.transaction.hash.toHexString());
   delegateChange.oldDelegate = event.params.fromDelegate.toHexString(),
@@ -72,4 +87,16 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegatePowerChange.blockTimestamp = event.block.timestamp;
   delegatePowerChange.blockNumber = event.block.number;
   delegatePowerChange.save();
+}
+
+export function transfer(event: Transfer): void {
+  let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
+  if(!delegatingHistory){
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory.amount = BigInt.zero();
+    delegatingHistory.timestamp = event.block.timestamp;
+    delegatingHistory.delegator = event.params.from.toHexString();
+  }
+  delegatingHistory.timestamp = event.block.timestamp;
+  delegatingHistory.save();
 }
