@@ -1,4 +1,4 @@
-specVersion: 0.0.2
+specVersion: 0.0.4
 schema:
   file: ./schema.graphql
 dataSources:
@@ -11,7 +11,7 @@ dataSources:
       startBlock: 13533400
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -24,6 +24,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/ens_mapping.ts
   - kind: ethereum/contract
     name: GitcoinToken
@@ -34,7 +36,7 @@ dataSources:
       startBlock: 12422075
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -47,6 +49,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/gitcoin_mapping.ts
   - kind: ethereum/contract
     name: IndexToken
@@ -57,7 +61,7 @@ dataSources:
       startBlock: 11000400
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -70,6 +74,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/indexcoop_mapping.ts
   - kind: ethereum/contract
     name: PoolTogetherToken
@@ -80,7 +86,7 @@ dataSources:
       startBlock: 11870113
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -93,6 +99,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/pooltogether_mapping.ts
   - kind: ethereum/contract
     name: UniswapToken
@@ -103,7 +111,7 @@ dataSources:
       startBlock: 10861674
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -116,6 +124,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/uniswap_mapping.ts
   - kind: ethereum/contract
     name: RariToken
@@ -126,7 +136,7 @@ dataSources:
       startBlock: 11094181
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -139,6 +149,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/rari_mapping.ts
   - kind: ethereum/contract
     name: IndexedToken
@@ -149,7 +161,7 @@ dataSources:
       startBlock: 11457421
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -162,6 +174,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/indexed_mapping.ts
   - kind: ethereum/contract
     name: OlympusToken
@@ -172,7 +186,7 @@ dataSources:
       startBlock: 13674957
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -185,6 +199,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/olympus_mapping.ts
   - kind: ethereum/contract
     name: AmpleforthToken
@@ -195,7 +211,7 @@ dataSources:
       startBlock: 12141775
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -208,6 +224,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/ampleforth_mapping.ts
   - kind: ethereum/contract
     name: InverseFinanceToken
@@ -218,7 +236,7 @@ dataSources:
       startBlock: 11498340
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -231,6 +249,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/inversefinance_mapping.ts
   - kind: ethereum/contract
     name: FeiProtocolToken
@@ -241,7 +261,7 @@ dataSources:
       startBlock: 12125705
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -254,6 +274,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/feiprotocol_mapping.ts
   - kind: ethereum/contract
     name: YamFinanceToken
@@ -264,7 +286,7 @@ dataSources:
       startBlock: 10886913
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -277,6 +299,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/yamfinance_mapping.ts
   - kind: ethereum/contract
     name: CompoundGovernanceToken
@@ -287,7 +311,7 @@ dataSources:
       startBlock: 9601359
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -300,6 +324,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/compoundgovernance_mapping.ts
   - kind: ethereum/contract
     name: AaveToken
@@ -310,7 +336,7 @@ dataSources:
       startBlock: 10926829
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -323,6 +349,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/aave_mapping.ts
   - kind: ethereum/contract
     name: SushiSwapToken
@@ -333,7 +361,7 @@ dataSources:
       startBlock: 10736094
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -346,6 +374,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/sushiswap_mapping.ts
   - kind: ethereum/contract
     name: HopExchangeToken
@@ -356,7 +386,7 @@ dataSources:
       startBlock: 14923678
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -369,6 +399,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/hop_mapping.ts
   - kind: ethereum/contract
     name: IdleFinanceToken
@@ -379,7 +411,7 @@ dataSources:
       startBlock: 11332000
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -392,6 +424,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/idle_mapping.ts
   - kind: ethereum/contract
     name: DYDXToken
@@ -402,7 +436,7 @@ dataSources:
       startBlock: 12809555
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -415,4 +449,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/dydx_mapping.ts

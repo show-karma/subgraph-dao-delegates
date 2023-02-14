@@ -11,11 +11,14 @@ import {
   User,
   DelegateOrganization,
   DelegatorOrganization,
-  DelegateVotingPowerChange
+  DelegateVotingPowerChange,
+  DelegateChange,
+  DelegatingHistory
 } from "../generated/schema";
 import {
   DelegateChanged,
   DelegatedPowerChanged,
+  Transfer
 } from "../generated/DYDXToken/DYDXToken";
 import { getDelegateOrganization } from "./shared/getDelegateOrganization";
 import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
@@ -37,7 +40,29 @@ export function delegateChanged(event: DelegateChanged): void {
   delegatorOrganization.delegate = delegate.id;
   delegatorOrganization.delegator = delegator.id;
   delegatorOrganization.organization = organization.id;
+
+  let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
+
+  if(!delegatingHistory){
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory.amount = BigInt.zero();
+    delegatingHistory.timestamp = event.block.timestamp;
+  }
+
+  delegatingHistory.fromDelegate = null;
+  delegatingHistory.toDelegate = event.params.delegatee.toHexString();
+  delegatingHistory.delegator = delegator.id;
+
+  delegatingHistory.save();
   delegatorOrganization.save();
+
+  const delegateChange = new DelegateChange(event.transaction.hash.toHexString());
+  delegateChange.newDelegate = event.params.delegatee.toHexString(),
+  delegateChange.delegator = event.params.delegator.toHexString(),
+  delegateChange.blockTimestamp = event.block.timestamp,
+  delegateChange.txnHash = event.transaction.hash.toHexString(),
+  delegateChange.blockNumber = event.block.number,
+  delegateChange.save();
 }
 
 export function delegateVotesChanged(event: DelegatedPowerChanged): void {
@@ -62,6 +87,30 @@ export function delegateVotesChanged(event: DelegatedPowerChanged): void {
 
   delegateOrganization.save();
 
+  let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
+
+  if(!delegatingHistory){
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory.amount = BigInt.zero();
+    delegatingHistory.timestamp = event.block.timestamp;
+    delegatingHistory.delegator = "0";
+  }
+
+  let delegatedAmount = event.params.amount;
+
+  if (delegatedAmount < BigInt.zero()) {
+    delegatingHistory.fromDelegate = user.id
+  } else {
+    delegatingHistory.toDelegate = user.id
+  }
+  if (delegatingHistory.amount) {
+    delegatingHistory.amount = delegatingHistory.amount.plus(delegatedAmount);
+  } else {
+    delegatingHistory.amount = delegatedAmount;
+  }
+
+  delegatingHistory.save();
+
   const delegatePowerChange = new DelegateVotingPowerChange(
     event.transaction.hash.toHexString()
   );
@@ -74,4 +123,16 @@ export function delegateVotesChanged(event: DelegatedPowerChanged): void {
   delegatePowerChange.blockTimestamp = event.block.timestamp;
   delegatePowerChange.blockNumber = event.block.number;
   delegatePowerChange.save();
+}
+
+export function transfer(event: Transfer): void {
+  let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
+  if(!delegatingHistory){
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory.amount = BigInt.zero();
+    delegatingHistory.timestamp = event.block.timestamp;
+    delegatingHistory.delegator = event.params.from.toHexString();
+  }
+  delegatingHistory.timestamp = event.block.timestamp;
+  delegatingHistory.save();
 }

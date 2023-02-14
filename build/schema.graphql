@@ -37,3 +37,22 @@ type DelegateVotingPowerChange @entity {
   txnHash: String!
   blockNumber: BigInt!
 }
+
+type DelegateChange @entity {
+  id: ID!
+  oldDelegate: String
+  newDelegate: String
+  delegator: String!
+  blockTimestamp: BigInt!
+  txnHash: String!
+  blockNumber: BigInt!
+}
+
+type DelegatingHistory @entity {
+  id: String!
+  fromDelegate: String
+  toDelegate: String
+  delegator: String!
+  amount: BigInt!
+  timestamp: BigInt!
+}
