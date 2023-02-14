@@ -24,6 +24,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/ens_mapping.ts
   - kind: ethereum/contract
     name: GitcoinToken
@@ -72,6 +74,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/indexcoop_mapping.ts
   - kind: ethereum/contract
     name: PoolTogetherToken
@@ -95,6 +99,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/pooltogether_mapping.ts
   - kind: ethereum/contract
     name: UniswapToken
@@ -118,6 +124,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/uniswap_mapping.ts
   - kind: ethereum/contract
     name: RariToken
@@ -141,6 +149,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/rari_mapping.ts
   - kind: ethereum/contract
     name: IndexedToken
@@ -164,6 +174,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/indexed_mapping.ts
   - kind: ethereum/contract
     name: OlympusToken
@@ -187,6 +199,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/olympus_mapping.ts
   - kind: ethereum/contract
     name: AmpleforthToken
@@ -210,6 +224,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/ampleforth_mapping.ts
   - kind: ethereum/contract
     name: InverseFinanceToken
@@ -233,6 +249,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/inversefinance_mapping.ts
   - kind: ethereum/contract
     name: FeiProtocolToken
@@ -256,6 +274,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/feiprotocol_mapping.ts
   - kind: ethereum/contract
     name: YamFinanceToken
@@ -279,6 +299,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/yamfinance_mapping.ts
   - kind: ethereum/contract
     name: CompoundGovernanceToken
@@ -302,6 +324,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/compoundgovernance_mapping.ts
   - kind: ethereum/contract
     name: AaveToken
@@ -325,6 +349,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/aave_mapping.ts
   - kind: ethereum/contract
     name: SushiSwapToken
@@ -348,6 +374,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/sushiswap_mapping.ts
   - kind: ethereum/contract
     name: HopExchangeToken
@@ -371,6 +399,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/hop_mapping.ts
   - kind: ethereum/contract
     name: IdleFinanceToken
@@ -394,6 +424,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/idle_mapping.ts
   - kind: ethereum/contract
     name: DYDXToken
@@ -417,4 +449,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: transfer
       file: ./src/dydx_mapping.ts
