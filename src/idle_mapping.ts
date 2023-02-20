@@ -37,7 +37,8 @@ export function delegateChanged(event: DelegateChanged): void {
   let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
 
   if(!delegatingHistory){
-    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString());
+    delegatingHistory.daoName = organization.id;
     delegatingHistory.amount = BigInt.zero();
     delegatingHistory.timestamp = event.block.timestamp;
   }
@@ -85,7 +86,8 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
 
   if(!delegatingHistory){
-    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString());
+    delegatingHistory.daoName = organization.id;
     delegatingHistory.amount = BigInt.zero();
     delegatingHistory.timestamp = event.block.timestamp;
     delegatingHistory.delegator = "0";
@@ -123,7 +125,8 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
 export function transfer(event: Transfer): void {
   let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
   if(!delegatingHistory){
-    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString())
+    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString());
+    delegatingHistory.daoName = 'idlefinance';
     delegatingHistory.amount = BigInt.zero();
     delegatingHistory.timestamp = event.block.timestamp;
     delegatingHistory.delegator = event.params.from.toHexString();

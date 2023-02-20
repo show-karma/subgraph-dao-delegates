@@ -535,6 +535,15 @@ export class DelegatingHistory extends Entity {
     this.set("id", Value.fromString(value));
   }
 
+  get daoName(): string {
+    let value = this.get("daoName");
+    return value!.toString();
+  }
+
+  set daoName(value: string) {
+    this.set("daoName", Value.fromString(value));
+  }
+
   get fromDelegate(): string | null {
     let value = this.get("fromDelegate");
     if (!value || value.kind == ValueKind.NULL) {
