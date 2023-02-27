@@ -57,3 +57,5 @@ type DelegatingHistory @entity {
   amount: BigInt!
   timestamp: BigInt!
 }
+
+
