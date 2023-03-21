@@ -191,14 +191,6 @@ export class DYDXToken___propositionPowerSnapshotsResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
-
-  getBlockNumber(): BigInt {
-    return this.value0;
-  }
-
-  getValue(): BigInt {
-    return this.value1;
-  }
 }
 
 export class DYDXToken___totalSupplySnapshotsResult {
@@ -216,14 +208,6 @@ export class DYDXToken___totalSupplySnapshotsResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
-
-  getBlockNumber(): BigInt {
-    return this.value0;
-  }
-
-  getValue(): BigInt {
-    return this.value1;
-  }
 }
 
 export class DYDXToken___votingSnapshotsResult {
@@ -240,14 +224,6 @@ export class DYDXToken___votingSnapshotsResult {
     map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
-  }
-
-  getBlockNumber(): BigInt {
-    return this.value0;
-  }
-
-  getValue(): BigInt {
-    return this.value1;
   }
 }
 

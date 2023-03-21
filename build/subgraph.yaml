@@ -24,8 +24,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: ENSToken/ENSToken.wasm
   - kind: ethereum/contract
     name: GitcoinToken
@@ -49,8 +47,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: GitcoinToken/GitcoinToken.wasm
   - kind: ethereum/contract
     name: IndexToken
@@ -74,8 +70,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: IndexToken/IndexToken.wasm
   - kind: ethereum/contract
     name: PoolTogetherToken
@@ -99,8 +93,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: PoolTogetherToken/PoolTogetherToken.wasm
   - kind: ethereum/contract
     name: UniswapToken
@@ -124,8 +116,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: UniswapToken/UniswapToken.wasm
   - kind: ethereum/contract
     name: RariToken
@@ -149,8 +139,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: RariToken/RariToken.wasm
   - kind: ethereum/contract
     name: IndexedToken
@@ -174,8 +162,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: IndexedToken/IndexedToken.wasm
   - kind: ethereum/contract
     name: OlympusToken
@@ -199,8 +185,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: OlympusToken/OlympusToken.wasm
   - kind: ethereum/contract
     name: AmpleforthToken
@@ -224,8 +208,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: AmpleforthToken/AmpleforthToken.wasm
   - kind: ethereum/contract
     name: InverseFinanceToken
@@ -249,8 +231,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: InverseFinanceToken/InverseFinanceToken.wasm
   - kind: ethereum/contract
     name: FeiProtocolToken
@@ -274,8 +254,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: FeiProtocolToken/FeiProtocolToken.wasm
   - kind: ethereum/contract
     name: YamFinanceToken
@@ -299,8 +277,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: YamFinanceToken/YamFinanceToken.wasm
   - kind: ethereum/contract
     name: CompoundGovernanceToken
@@ -324,8 +300,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: CompoundGovernanceToken/CompoundGovernanceToken.wasm
   - kind: ethereum/contract
     name: AaveToken
@@ -349,8 +323,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: AaveToken/AaveToken.wasm
   - kind: ethereum/contract
     name: SushiSwapToken
@@ -374,8 +346,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: SushiSwapToken/SushiSwapToken.wasm
   - kind: ethereum/contract
     name: HopExchangeToken
@@ -399,8 +369,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: HopExchangeToken/HopExchangeToken.wasm
   - kind: ethereum/contract
     name: IdleFinanceToken
@@ -424,8 +392,6 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: IdleFinanceToken/IdleFinanceToken.wasm
   - kind: ethereum/contract
     name: DYDXToken
@@ -449,6 +415,4 @@ dataSources:
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: transfer
       file: DYDXToken/DYDXToken.wasm
