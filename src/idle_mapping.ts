@@ -83,9 +83,7 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
 
   delegateOrganization.save();
 
-  const delegatePowerChange = new DelegateVotingPowerChange(
-    event.transaction.hash.toHexString()
-  );
+  const delegatePowerChange = new DelegateVotingPowerChange( `${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
 
   delegatePowerChange.previousBalance = event.params.previousBalance;
   delegatePowerChange.newBalance = event.params.newBalance;

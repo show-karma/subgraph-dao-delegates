@@ -151,6 +151,14 @@ export class PoolTogetherToken__checkpointsResult {
     map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     return map;
   }
+
+  getFromBlock(): BigInt {
+    return this.value0;
+  }
+
+  getVotes(): BigInt {
+    return this.value1;
+  }
 }
 
 export class PoolTogetherToken extends ethereum.SmartContract {
