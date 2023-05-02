@@ -34,7 +34,7 @@ export function delegateChanged(event: DelegateChanged): void {
   delegatorOrganization.delegator = delegator.id;
   delegatorOrganization.organization = organization.id;
 
-  const delegateChange = new DelegateChange(event.transaction.hash.toHexString());
+  const delegateChange = new DelegateChange(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
   delegateChange.newDelegate = event.params.delegatee.toHexString(),
   delegateChange.delegator = event.params.delegator.toHexString(),
   delegateChange.blockTimestamp = event.block.timestamp,
@@ -42,10 +42,10 @@ export function delegateChanged(event: DelegateChanged): void {
   delegateChange.blockNumber = event.block.number,
   delegateChange.save();
 
-  let delegatingHistory = DelegatingHistory.load(event.transaction.hash.toHexString())
+  let delegatingHistory = DelegatingHistory.load(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`)
 
   if(!delegatingHistory){
-    delegatingHistory = new DelegatingHistory(event.transaction.hash.toHexString());
+    delegatingHistory = new DelegatingHistory(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
     delegatingHistory.daoName = organization.id;
     delegatingHistory.amount = BigInt.zero();
     delegatingHistory.timestamp = event.block.timestamp;
