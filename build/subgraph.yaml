@@ -416,3 +416,24 @@ dataSources:
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
       file: DYDXToken/DYDXToken.wasm
+  - kind: ethereum/contract
+    name: ApeCoinToken
+    network: mainnet
+    source:
+      address: "0x469788fE6E9E9681C6ebF3bF78e7Fd26Fc015446"
+      abi: ApeCoinToken
+      startBlock: 11225329
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: ApeCoinToken
+          file: ApeCoinToken/abis/ApeCoinToken.json
+      eventHandlers:
+        - event: SetDelegate(indexed address,indexed bytes32,indexed address)
+          handler: setDelegateHandle
+      file: ApeCoinToken/ApeCoinToken.wasm
