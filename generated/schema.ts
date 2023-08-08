@@ -35,7 +35,11 @@ export class Organization extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -44,7 +48,11 @@ export class Organization extends Entity {
 
   get token(): string {
     let value = this.get("token");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set token(value: string) {
@@ -60,28 +68,12 @@ export class Organization extends Entity {
     }
   }
 
-  set delegates(value: Array<string> | null) {
-    if (!value) {
-      this.unset("delegates");
-    } else {
-      this.set("delegates", Value.fromStringArray(<Array<string>>value));
-    }
-  }
-
   get delegators(): Array<string> | null {
     let value = this.get("delegators");
     if (!value || value.kind == ValueKind.NULL) {
       return null;
     } else {
       return value.toStringArray();
-    }
-  }
-
-  set delegators(value: Array<string> | null) {
-    if (!value) {
-      this.unset("delegators");
-    } else {
-      this.set("delegators", Value.fromStringArray(<Array<string>>value));
     }
   }
 }
@@ -110,7 +102,11 @@ export class User extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -126,34 +122,12 @@ export class User extends Entity {
     }
   }
 
-  set delegateorganizations(value: Array<string> | null) {
-    if (!value) {
-      this.unset("delegateorganizations");
-    } else {
-      this.set(
-        "delegateorganizations",
-        Value.fromStringArray(<Array<string>>value)
-      );
-    }
-  }
-
   get delegatororganizations(): Array<string> | null {
     let value = this.get("delegatororganizations");
     if (!value || value.kind == ValueKind.NULL) {
       return null;
     } else {
       return value.toStringArray();
-    }
-  }
-
-  set delegatororganizations(value: Array<string> | null) {
-    if (!value) {
-      this.unset("delegatororganizations");
-    } else {
-      this.set(
-        "delegatororganizations",
-        Value.fromStringArray(<Array<string>>value)
-      );
     }
   }
 }
@@ -184,7 +158,11 @@ export class DelegateOrganization extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -193,7 +171,11 @@ export class DelegateOrganization extends Entity {
 
   get delegate(): string {
     let value = this.get("delegate");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set delegate(value: string) {
@@ -202,7 +184,11 @@ export class DelegateOrganization extends Entity {
 
   get organization(): string {
     let value = this.get("organization");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set organization(value: string) {
@@ -211,7 +197,11 @@ export class DelegateOrganization extends Entity {
 
   get voteBalance(): BigInt {
     let value = this.get("voteBalance");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set voteBalance(value: BigInt) {
@@ -265,7 +255,11 @@ export class DelegatorOrganization extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -274,7 +268,11 @@ export class DelegatorOrganization extends Entity {
 
   get delegator(): string {
     let value = this.get("delegator");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set delegator(value: string) {
@@ -283,7 +281,11 @@ export class DelegatorOrganization extends Entity {
 
   get delegate(): string {
     let value = this.get("delegate");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set delegate(value: string) {
@@ -292,7 +294,11 @@ export class DelegatorOrganization extends Entity {
 
   get organization(): string {
     let value = this.get("organization");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set organization(value: string) {
@@ -329,7 +335,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -338,7 +348,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get tokenAddress(): string {
     let value = this.get("tokenAddress");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set tokenAddress(value: string) {
@@ -347,7 +361,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get delegate(): string {
     let value = this.get("delegate");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set delegate(value: string) {
@@ -356,7 +374,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get previousBalance(): BigInt {
     let value = this.get("previousBalance");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set previousBalance(value: BigInt) {
@@ -365,7 +387,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get newBalance(): BigInt {
     let value = this.get("newBalance");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set newBalance(value: BigInt) {
@@ -374,7 +400,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get blockTimestamp(): BigInt {
     let value = this.get("blockTimestamp");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set blockTimestamp(value: BigInt) {
@@ -383,7 +413,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get txnHash(): string {
     let value = this.get("txnHash");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set txnHash(value: string) {
@@ -392,7 +426,11 @@ export class DelegateVotingPowerChange extends Entity {
 
   get blockNumber(): BigInt {
     let value = this.get("blockNumber");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set blockNumber(value: BigInt) {
@@ -424,7 +462,11 @@ export class DelegateChange extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -467,7 +509,11 @@ export class DelegateChange extends Entity {
 
   get delegator(): string {
     let value = this.get("delegator");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set delegator(value: string) {
@@ -476,7 +522,11 @@ export class DelegateChange extends Entity {
 
   get blockTimestamp(): BigInt {
     let value = this.get("blockTimestamp");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set blockTimestamp(value: BigInt) {
@@ -485,7 +535,11 @@ export class DelegateChange extends Entity {
 
   get txnHash(): string {
     let value = this.get("txnHash");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set txnHash(value: string) {
@@ -494,7 +548,11 @@ export class DelegateChange extends Entity {
 
   get blockNumber(): BigInt {
     let value = this.get("blockNumber");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set blockNumber(value: BigInt) {
@@ -528,7 +586,11 @@ export class DelegatingHistory extends Entity {
 
   get id(): string {
     let value = this.get("id");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set id(value: string) {
@@ -537,7 +599,11 @@ export class DelegatingHistory extends Entity {
 
   get daoName(): string {
     let value = this.get("daoName");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set daoName(value: string) {
@@ -580,7 +646,11 @@ export class DelegatingHistory extends Entity {
 
   get delegator(): string {
     let value = this.get("delegator");
-    return value!.toString();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
   }
 
   set delegator(value: string) {
@@ -589,7 +659,11 @@ export class DelegatingHistory extends Entity {
 
   get amount(): BigInt {
     let value = this.get("amount");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set amount(value: BigInt) {
@@ -598,7 +672,11 @@ export class DelegatingHistory extends Entity {
 
   get timestamp(): BigInt {
     let value = this.get("timestamp");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
   }
 
   set timestamp(value: BigInt) {
