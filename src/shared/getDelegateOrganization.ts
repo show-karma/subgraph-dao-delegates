@@ -1,5 +1,13 @@
+import { BigInt } from "@graphprotocol/graph-ts";
 import { DelegateOrganization } from "../../generated/schema";
 
 export function getDelegateOrganization(id: string): DelegateOrganization {
-  return (DelegateOrganization.load(id) || new DelegateOrganization(id)) as DelegateOrganization;
+  let delegate = DelegateOrganization.load(id);
+
+  if(!delegate){
+    delegate = new DelegateOrganization(id);
+    delegate.voteBalance = BigInt.zero();
+  }
+
+  return delegate as DelegateOrganization;
 }

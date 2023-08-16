@@ -72,7 +72,10 @@ export function delegateVotesChanged(event: DelegatedPowerChanged): void {
 
   delegateOrganization.delegate = user.id;
   delegateOrganization.organization = organization.id;
-  delegateOrganization.voteBalance = event.params.amount;
+  
+  const balance = event.params.delegationType === 1 ? delegateOrganization.voteBalance.plus(event.params.amount) : delegateOrganization.voteBalance.minus(event.params.amount)
+
+  delegateOrganization.voteBalance = balance;
 
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
