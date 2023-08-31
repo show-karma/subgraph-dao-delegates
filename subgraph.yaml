@@ -455,10 +455,10 @@ dataSources:
         - Delegator
       abis:
         - name: StakedAaveToken
-          file: StakedAaveToken/abis/StakedAaveToken.json
+          file: ./abis/StakedAaveToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,uint8)
           handler: delegateChanged
         - event: DelegatedPowerChanged(indexed address,uint256,uint8)
           handler: delegateVotesChanged
-      file: AaveToken/AaveToken.wasm
+      file: ./src/aave_mapping.ts
