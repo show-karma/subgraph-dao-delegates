@@ -7,10 +7,10 @@ import {
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema"
-import { DelegateChanged, DelegateVotesChanged, Transfer } from "../generated/IndexToken/IndexToken"
-import { getDelegateOrganization } from "./shared/getDelegateOrganization"
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt"
+} from "../../generated/schema"
+import { DelegateChanged, DelegateVotesChanged, Transfer } from "../../generated/IndexToken/IndexToken"
+import { getDelegateOrganization } from "../shared/getDelegateOrganization"
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt"
 
 export function delegateChanged(event: DelegateChanged): void {
   let organization = new Organization("index")

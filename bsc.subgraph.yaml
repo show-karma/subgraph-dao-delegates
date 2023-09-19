@@ -1,14 +1,14 @@
 specVersion: 0.0.4
 schema:
-  file: schema.graphql
+  file: ./schema.graphql
 dataSources:
   - kind: ethereum
     name: Connext
-    network: gnosis
+    network: bsc
     source:
       abi: Connext
       address: "0x58b9cB810A68a7f3e1E4f8Cb45D1B9B3c79705E8"
-      startBlock: 29795027
+      startBlock: 31430561
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -18,10 +18,10 @@ dataSources:
         - DelegateVotesChanged
       abis:
         - name: Connext
-          file: Connext/abis/ConnextABI.json
+          file: ./abis/ConnextABI.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: handleDelegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: handleDelegateVotesChanged
-      file: Connext/Connext.wasm
+      file: ./src/mainnet/connext_mapping.ts

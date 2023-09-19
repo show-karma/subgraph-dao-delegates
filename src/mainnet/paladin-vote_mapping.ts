@@ -1,4 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts";
+import { ipfs, json, BigInt, BigDecimal, Bytes, log } from "@graphprotocol/graph-ts"
 import {
   Organization,
   User,
@@ -7,32 +7,26 @@ import {
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema";
-import {
-  DelegateChanged,
-  DelegateVotesChanged,
-  Transfer
-} from "../generated/YamFinanceToken/YamFinanceToken";
-import { getDelegateOrganization } from "./shared/getDelegateOrganization";
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+} from "../../generated/schema"
+import { DelegateChanged, DelegateVotesChanged, Transfer } from "../../generated/PaladinToken/PaladinToken"
+import { getDelegateOrganization } from "../shared/getDelegateOrganization"
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt"
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("yamfinance");
-  organization.token = "yam";
-  organization.save();
+  let organization = new Organization("paladinvote")
+  organization.token = "paladinvote"
+  organization.save()
 
-  let delegate = new User(event.params.toDelegate.toHexString());
+  let delegate = new User(event.params.toDelegate.toHexString())
   delegate.save();
 
-  let delegator = new User(event.params.delegator.toHexString());
+  let delegator = new User(event.params.delegator.toHexString())
   delegator.save();
 
-  let delegatorOrganization = new DelegatorOrganization(
-    `${delegator.id}-${organization.id}`
-  );
-  delegatorOrganization.delegate = delegate.id;
-  delegatorOrganization.delegator = delegator.id;
-  delegatorOrganization.organization = organization.id;
+  let delegatorOrganization = new DelegatorOrganization(`${delegator.id}-${organization.id}`)
+  delegatorOrganization.delegate = delegate.id
+  delegatorOrganization.delegator = delegator.id
+  delegatorOrganization.organization = organization.id
 
   let delegatingHistory = DelegatingHistory.load(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`)
 
@@ -61,23 +55,23 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("yamfinance");
-  organization.token = "yam";
-  organization.save();
+  let organization = new Organization("paladinvote")
+  organization.token = "paladinvote"
+  organization.save()
 
-  let user = new User(event.params.delegate.toHexString());
+  let user = new User(event.params.delegate.toHexString())
   user.save();
 
-  const delegateOrganizationId =  `${user.id}-${organization.id}`;
+  const delegateOrganizationId = `${user.id}-${organization.id}`;
   const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
-  
+
   delegateOrganization.delegate = user.id;
   delegateOrganization.organization = organization.id;
   delegateOrganization.voteBalance = event.params.newBalance;
 
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
-  delegateOrganization.save();
+  delegateOrganization.save()
 
   const delegatePowerChange = new DelegateVotingPowerChange( `${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
 
@@ -90,4 +84,3 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegatePowerChange.blockNumber = event.block.number;
   delegatePowerChange.save();
 }
-

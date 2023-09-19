@@ -6,19 +6,19 @@ import {
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema";
+} from "../../generated/schema";
 import {
   DelegateChanged,
   DelegateVotesChanged,
   Transfer
-} from "../generated/IdleFinanceToken/IdleFinanceToken";
-import { getDelegateOrganization } from "./shared/getDelegateOrganization";
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+} from "../../generated/HopExchangeToken/HopExchangeToken";
+import { getDelegateOrganization } from "../shared/getDelegateOrganization";
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt";
 import { BigInt } from "@graphprotocol/graph-ts";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("idlefinance");
-  organization.token = "idle";
+  let organization = new Organization("hop");
+  organization.token = "hop";
   organization.save();
 
   let delegate = new User(event.params.toDelegate.toHexString());
@@ -61,15 +61,14 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("idlefinance");
-  organization.token = "idle";
+  let organization = new Organization("hop");
+  organization.token = "hop";
   organization.save();
 
   let user = new User(event.params.delegate.toHexString());
   user.save();
 
   const delegateOrganizationId = `${user.id}-${organization.id}`;
-
   const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
 
   delegateOrganization.delegate = user.id;
@@ -94,4 +93,3 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegatePowerChange.blockNumber = event.block.number;
   delegatePowerChange.save();
 }
-
