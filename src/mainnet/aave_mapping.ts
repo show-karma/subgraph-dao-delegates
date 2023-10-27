@@ -47,7 +47,6 @@ export function delegateChanged(event: DelegateChanged): void {
   if(!delegatingHistory){
     delegatingHistory = new DelegatingHistory(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
     delegatingHistory.daoName = organization.id;
-    delegatingHistory.amount = BigInt.zero();
     delegatingHistory.timestamp = event.block.timestamp;
   }
 
