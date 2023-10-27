@@ -1,12 +1,4 @@
 import {
-  ipfs,
-  json,
-  BigInt,
-  BigDecimal,
-  Bytes,
-  log,
-} from "@graphprotocol/graph-ts";
-import {
   Organization,
   User,
   DelegateOrganization,
@@ -14,21 +6,22 @@ import {
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema";
+} from "../../generated/schema";
 import {
   DelegateChanged,
-  DelegatedPowerChanged,
+  DelegateVotesChanged,
   Transfer
-} from "../generated/DYDXToken/DYDXToken";
-import { getDelegateOrganization } from "./shared/getDelegateOrganization";
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+} from "../../generated/RariToken/RariToken";
+import { getDelegateOrganization } from "../shared/getDelegateOrganization";
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("dydx");
-  organization.token = "dydx";
+  let organization = new Organization("raricapital");
+  organization.token = "rari";
   organization.save();
 
-  let delegate = new User(event.params.delegatee.toHexString());
+  let delegate = new User(event.params.toDelegate.toHexString());
   delegate.save();
 
   let delegator = new User(event.params.delegator.toHexString());
@@ -50,15 +43,16 @@ export function delegateChanged(event: DelegateChanged): void {
     delegatingHistory.timestamp = event.block.timestamp;
   }
 
-  delegatingHistory.fromDelegate = null;
-  delegatingHistory.toDelegate = event.params.delegatee.toHexString();
+  delegatingHistory.fromDelegate = event.params.fromDelegate.toHexString();
+  delegatingHistory.toDelegate = event.params.toDelegate.toHexString();
   delegatingHistory.delegator = delegator.id;
 
   delegatingHistory.save();
   delegatorOrganization.save();
 
   const delegateChange = new DelegateChange(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
-  delegateChange.newDelegate = event.params.delegatee.toHexString(),
+  delegateChange.oldDelegate = event.params.fromDelegate.toHexString(),
+  delegateChange.newDelegate = event.params.toDelegate.toHexString(),
   delegateChange.delegator = event.params.delegator.toHexString(),
   delegateChange.blockTimestamp = event.block.timestamp,
   delegateChange.txnHash = event.transaction.hash.toHexString(),
@@ -66,33 +60,30 @@ export function delegateChanged(event: DelegateChanged): void {
   delegateChange.save();
 }
 
-export function delegateVotesChanged(event: DelegatedPowerChanged): void {
-  let organization = new Organization("dydx");
-  organization.token = "dydx";
+export function delegateVotesChanged(event: DelegateVotesChanged): void {
+  let organization = new Organization("raricapital");
+  organization.token = "rari";
   organization.save();
 
-  let user = new User(event.params.user.toHexString());
+  let user = new User(event.params.delegate.toHexString());
   user.save();
 
   const delegateOrganizationId = `${user.id}-${organization.id}`;
   const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
-
+  
   delegateOrganization.delegate = user.id;
   delegateOrganization.organization = organization.id;
-  delegateOrganization.voteBalance = event.params.amount;
+  delegateOrganization.voteBalance = event.params.newBalance;
 
-  delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(
-    event,
-    delegateOrganization
-  );
+  delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
   delegateOrganization.save();
 
   const delegatePowerChange = new DelegateVotingPowerChange( `${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
 
-  delegatePowerChange.previousBalance = BigInt.fromI32(0);
-  delegatePowerChange.newBalance = event.params.amount;
-  delegatePowerChange.delegate = user.id;
+  delegatePowerChange.previousBalance = event.params.previousBalance;
+  delegatePowerChange.newBalance = event.params.newBalance;
+  delegatePowerChange.delegate = event.params.delegate.toHexString();
   delegatePowerChange.tokenAddress = event.address.toHexString();
   delegatePowerChange.txnHash = event.transaction.hash.toHexString();
   delegatePowerChange.blockTimestamp = event.block.timestamp;

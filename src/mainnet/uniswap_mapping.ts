@@ -1,22 +1,20 @@
+import { ipfs, json, BigInt, BigDecimal, Bytes, log } from "@graphprotocol/graph-ts"
 import {
   Organization,
   User,
+  DelegateOrganization,
   DelegatorOrganization,
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema"
-import { DelegateChanged, DelegateVotesChanged, Transfer } from "../generated/AmpleforthToken/AmpleforthToken"
-import { getDelegateOrganization } from "./shared/getDelegateOrganization";
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
-import { BigInt } from "@graphprotocol/graph-ts";
-
-const dao = 'ampleforth';
-const token = 'forth';
+} from "../../generated/schema"
+import { DelegateChanged, DelegateVotesChanged, Transfer } from "../../generated/UniswapToken/UniswapToken"
+import { getDelegateOrganization } from "../shared/getDelegateOrganization"
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt"
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization(dao)
-  organization.token = token;
+  let organization = new Organization("uniswap")
+  organization.token = "uni"
   organization.save()
 
   let delegate = new User(event.params.toDelegate.toHexString())
@@ -54,12 +52,11 @@ export function delegateChanged(event: DelegateChanged): void {
   delegateChange.txnHash = event.transaction.hash.toHexString(),
   delegateChange.blockNumber = event.block.number,
   delegateChange.save();
-
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization(dao)
-  organization.token = token;
+  let organization = new Organization("uniswap")
+  organization.token = "uni"
   organization.save()
 
   let user = new User(event.params.delegate.toHexString())
@@ -67,7 +64,7 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
 
   const delegateOrganizationId = `${user.id}-${organization.id}`;
   const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
-
+  
   delegateOrganization.delegate = user.id
   delegateOrganization.organization = organization.id
   delegateOrganization.voteBalance = event.params.newBalance
@@ -76,7 +73,7 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
 
   delegateOrganization.save()
 
-  const delegatePowerChange = new DelegateVotingPowerChange(`${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
+  const delegatePowerChange = new DelegateVotingPowerChange( `${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);
 
   delegatePowerChange.previousBalance = event.params.previousBalance;
   delegatePowerChange.newBalance = event.params.newBalance;

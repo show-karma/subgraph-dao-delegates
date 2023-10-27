@@ -1,4 +1,3 @@
-import { BigInt } from "@graphprotocol/graph-ts";
 import {
   Organization,
   User,
@@ -7,18 +6,19 @@ import {
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema";
+} from "../../generated/schema";
 import {
   DelegateChanged,
   DelegateVotesChanged,
   Transfer
-} from "../generated/SushiSwapToken/SushiSwapToken";
-import { getDelegateOrganization } from "./shared/getDelegateOrganization";
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
+} from "../../generated/FeiProtocolToken/FeiProtocolToken";
+import { getDelegateOrganization } from "../shared/getDelegateOrganization";
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt";
+import { BigInt } from "@graphprotocol/graph-ts";
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization("sushiswap");
-  organization.token = "sushi";
+  let organization = new Organization("feiprotocol");
+  organization.token = "tribe";
   organization.save();
 
   let delegate = new User(event.params.toDelegate.toHexString());
@@ -61,8 +61,8 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization("sushiswap");
-  organization.token = "sushi";
+  let organization = new Organization("feiprotocol");
+  organization.token = "tribe";
   organization.save();
 
   let user = new User(event.params.delegate.toHexString());
@@ -70,13 +70,13 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
 
   const delegateOrganizationId = `${user.id}-${organization.id}`;
   const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
-  
+
   delegateOrganization.delegate = user.id;
   delegateOrganization.organization = organization.id;
   delegateOrganization.voteBalance = event.params.newBalance;
 
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
-
+  
   delegateOrganization.save();
 
   const delegatePowerChange = new DelegateVotingPowerChange( `${event.transaction.hash.toHexString()}-${event.logIndex.toString()}`);

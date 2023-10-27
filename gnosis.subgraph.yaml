@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: schema.graphql
+  file: ./schema.graphql
 dataSources:
   - kind: ethereum
     name: Connext
@@ -18,10 +18,10 @@ dataSources:
         - DelegateVotesChanged
       abis:
         - name: Connext
-          file: Connext/abis/ConnextABI.json
+          file: ./abis/ConnextABI.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: handleDelegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: handleDelegateVotesChanged
-      file: Connext/Connext.wasm
+      file: ./src/mainnet/connext_mapping.ts

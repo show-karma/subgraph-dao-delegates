@@ -1,3 +1,4 @@
+import { ipfs, json, BigInt, BigDecimal, Bytes, log } from "@graphprotocol/graph-ts"
 import {
   Organization,
   User,
@@ -6,18 +7,14 @@ import {
   DelegateVotingPowerChange,
   DelegateChange,
   DelegatingHistory
-} from "../generated/schema"
-import { DelegateChanged, DelegateVotesChanged, Transfer } from "../generated/IndexedToken/IndexedToken"
-import { getDelegateOrganization } from "./shared/getDelegateOrganization";
-import { getFirstTokenDelegatedAt } from "./shared/getFirstTokenDelegatedAt";
-import { BigInt } from "@graphprotocol/graph-ts";
-
-const dao = 'indexed';
-const token = 'ndx';
+} from "../../generated/schema"
+import { DelegateChanged, DelegateVotesChanged, Transfer } from "../../generated/ENSToken/ENSToken"
+import { getDelegateOrganization } from "../shared/getDelegateOrganization"
+import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt"
 
 export function delegateChanged(event: DelegateChanged): void {
-  let organization = new Organization(dao)
-  organization.token = token;
+  let organization = new Organization("ens")
+  organization.token = "ens"
   organization.save()
 
   let delegate = new User(event.params.toDelegate.toHexString())
@@ -58,8 +55,8 @@ export function delegateChanged(event: DelegateChanged): void {
 }
 
 export function delegateVotesChanged(event: DelegateVotesChanged): void {
-  let organization = new Organization(dao)
-  organization.token = token;
+  let organization = new Organization("ens")
+  organization.token = "ens"
   organization.save()
 
   let user = new User(event.params.delegate.toHexString())
@@ -68,9 +65,9 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   const delegateOrganizationId = `${user.id}-${organization.id}`;
   const delegateOrganization = getDelegateOrganization(delegateOrganizationId);
 
-  delegateOrganization.delegate = user.id
-  delegateOrganization.organization = organization.id
-  delegateOrganization.voteBalance = event.params.newBalance
+  delegateOrganization.delegate = user.id;
+  delegateOrganization.organization = organization.id;
+  delegateOrganization.voteBalance = event.params.newBalance;
 
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 
@@ -87,4 +84,3 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegatePowerChange.blockNumber = event.block.number;
   delegatePowerChange.save();
 }
-
