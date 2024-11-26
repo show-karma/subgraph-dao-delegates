@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -192,7 +192,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATION_TYPEHASH",
       "DELEGATION_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -202,7 +202,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATION_TYPEHASH",
       "DELEGATION_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -215,7 +215,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_TYPEHASH",
       "DOMAIN_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -225,7 +225,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_TYPEHASH",
       "DOMAIN_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -253,7 +253,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -263,7 +263,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -276,7 +276,10 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(account), ethereum.Value.fromAddress(spender)]
+      [
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromAddress(spender),
+      ],
     );
 
     return result[0].toBigInt();
@@ -284,12 +287,15 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   try_allowance(
     account: Address,
-    spender: Address
+    spender: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(account), ethereum.Value.fromAddress(spender)]
+      [
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromAddress(spender),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -301,7 +307,7 @@ export class GitcoinToken extends ethereum.SmartContract {
   approve(spender: Address, rawAmount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(rawAmount)
+      ethereum.Value.fromUnsignedBigInt(rawAmount),
     ]);
 
     return result[0].toBoolean();
@@ -309,11 +315,11 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   try_approve(
     spender: Address,
-    rawAmount: BigInt
+    rawAmount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(rawAmount)
+      ethereum.Value.fromUnsignedBigInt(rawAmount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -324,7 +330,7 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -332,7 +338,7 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -343,34 +349,34 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): GitcoinToken__checkpointsResult {
     let result = super.call(
       "checkpoints",
       "checkpoints(address,uint32):(uint32,uint96)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new GitcoinToken__checkpointsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<GitcoinToken__checkpointsResult> {
     let result = super.tryCall(
       "checkpoints",
       "checkpoints(address,uint32):(uint32,uint96)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -379,8 +385,8 @@ export class GitcoinToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new GitcoinToken__checkpointsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -401,7 +407,7 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   delegates(param0: Address): Address {
     let result = super.call("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toAddress();
@@ -409,7 +415,7 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   try_delegates(param0: Address): ethereum.CallResult<Address> {
     let result = super.tryCall("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -422,7 +428,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint96)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
 
     return result[0].toBigInt();
@@ -432,7 +438,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint96)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -447,8 +453,8 @@ export class GitcoinToken extends ethereum.SmartContract {
       "getPriorVotes(address,uint256):(uint96)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
 
     return result[0].toBigInt();
@@ -456,15 +462,15 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   try_getPriorVotes(
     account: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPriorVotes",
       "getPriorVotes(address,uint256):(uint96)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -477,7 +483,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "minimumTimeBetweenMints",
       "minimumTimeBetweenMints():(uint32)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -487,7 +493,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "minimumTimeBetweenMints",
       "minimumTimeBetweenMints():(uint32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -530,7 +536,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "mintingAllowedAfter",
       "mintingAllowedAfter():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -540,7 +546,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "mintingAllowedAfter",
       "mintingAllowedAfter():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -566,7 +572,7 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   nonces(param0: Address): BigInt {
     let result = super.call("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -574,7 +580,7 @@ export class GitcoinToken extends ethereum.SmartContract {
 
   try_nonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -587,7 +593,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.call(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -597,7 +603,7 @@ export class GitcoinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -639,7 +645,7 @@ export class GitcoinToken extends ethereum.SmartContract {
   transfer(dst: Address, rawAmount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(dst),
-      ethereum.Value.fromUnsignedBigInt(rawAmount)
+      ethereum.Value.fromUnsignedBigInt(rawAmount),
     ]);
 
     return result[0].toBoolean();
@@ -648,7 +654,7 @@ export class GitcoinToken extends ethereum.SmartContract {
   try_transfer(dst: Address, rawAmount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(dst),
-      ethereum.Value.fromUnsignedBigInt(rawAmount)
+      ethereum.Value.fromUnsignedBigInt(rawAmount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -664,8 +670,8 @@ export class GitcoinToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(src),
         ethereum.Value.fromAddress(dst),
-        ethereum.Value.fromUnsignedBigInt(rawAmount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(rawAmount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -674,7 +680,7 @@ export class GitcoinToken extends ethereum.SmartContract {
   try_transferFrom(
     src: Address,
     dst: Address,
-    rawAmount: BigInt
+    rawAmount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -682,8 +688,8 @@ export class GitcoinToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(src),
         ethereum.Value.fromAddress(dst),
-        ethereum.Value.fromUnsignedBigInt(rawAmount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(rawAmount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

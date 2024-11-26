@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -343,7 +343,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATION_TYPEHASH",
       "DELEGATION_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -353,7 +353,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATION_TYPEHASH",
       "DELEGATION_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -366,7 +366,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -376,7 +376,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -389,7 +389,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_TYPEHASH",
       "DOMAIN_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -399,7 +399,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_TYPEHASH",
       "DOMAIN_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -412,7 +412,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -422,7 +422,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -435,7 +435,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
 
     return result[0].toBigInt();
@@ -445,7 +445,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -457,7 +457,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -466,7 +466,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -477,7 +477,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   balanceOf(owner: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(owner)
+      ethereum.Value.fromAddress(owner),
     ]);
 
     return result[0].toBigInt();
@@ -485,7 +485,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   try_balanceOf(owner: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(owner)
+      ethereum.Value.fromAddress(owner),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -498,7 +498,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "balanceOfUnderlying",
       "balanceOfUnderlying(address):(uint256)",
-      [ethereum.Value.fromAddress(owner)]
+      [ethereum.Value.fromAddress(owner)],
     );
 
     return result[0].toBigInt();
@@ -508,7 +508,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "balanceOfUnderlying",
       "balanceOfUnderlying(address):(uint256)",
-      [ethereum.Value.fromAddress(owner)]
+      [ethereum.Value.fromAddress(owner)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -519,34 +519,34 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): YamFinanceToken__checkpointsResult {
     let result = super.call(
       "checkpoints",
       "checkpoints(address,uint32):(uint32,uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new YamFinanceToken__checkpointsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<YamFinanceToken__checkpointsResult> {
     let result = super.tryCall(
       "checkpoints",
       "checkpoints(address,uint32):(uint32,uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -555,8 +555,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new YamFinanceToken__checkpointsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -581,8 +581,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -590,15 +590,15 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt
+    subtractedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -611,7 +611,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "delegateToImplementation",
       "delegateToImplementation(bytes):(bytes)",
-      [ethereum.Value.fromBytes(data)]
+      [ethereum.Value.fromBytes(data)],
     );
 
     return result[0].toBytes();
@@ -621,7 +621,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "delegateToImplementation",
       "delegateToImplementation(bytes):(bytes)",
-      [ethereum.Value.fromBytes(data)]
+      [ethereum.Value.fromBytes(data)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -634,7 +634,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "delegateToViewImplementation",
       "delegateToViewImplementation(bytes):(bytes)",
-      [ethereum.Value.fromBytes(data)]
+      [ethereum.Value.fromBytes(data)],
     );
 
     return result[0].toBytes();
@@ -644,7 +644,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "delegateToViewImplementation",
       "delegateToViewImplementation(bytes):(bytes)",
-      [ethereum.Value.fromBytes(data)]
+      [ethereum.Value.fromBytes(data)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -655,7 +655,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   delegates(delegator: Address): Address {
     let result = super.call("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(delegator)
+      ethereum.Value.fromAddress(delegator),
     ]);
 
     return result[0].toAddress();
@@ -663,7 +663,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   try_delegates(delegator: Address): ethereum.CallResult<Address> {
     let result = super.tryCall("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(delegator)
+      ethereum.Value.fromAddress(delegator),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -676,7 +676,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "fragmentToYam",
       "fragmentToYam(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(value)]
+      [ethereum.Value.fromUnsignedBigInt(value)],
     );
 
     return result[0].toBigInt();
@@ -686,7 +686,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "fragmentToYam",
       "fragmentToYam(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(value)]
+      [ethereum.Value.fromUnsignedBigInt(value)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -699,7 +699,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
 
     return result[0].toBigInt();
@@ -709,7 +709,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -724,8 +724,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       "getPriorVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
 
     return result[0].toBigInt();
@@ -733,15 +733,15 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   try_getPriorVotes(
     account: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPriorVotes",
       "getPriorVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -775,7 +775,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "implementation",
       "implementation():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -805,8 +805,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -814,15 +814,15 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt
+    addedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -850,7 +850,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "internalDecimals",
       "internalDecimals():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -860,7 +860,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "internalDecimals",
       "internalDecimals():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -873,7 +873,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "maxScalingFactor",
       "maxScalingFactor():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -883,7 +883,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "maxScalingFactor",
       "maxScalingFactor():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -910,7 +910,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   mint(to: Address, mintAmount: BigInt): boolean {
     let result = super.call("mint", "mint(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(mintAmount)
+      ethereum.Value.fromUnsignedBigInt(mintAmount),
     ]);
 
     return result[0].toBoolean();
@@ -919,7 +919,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   try_mint(to: Address, mintAmount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("mint", "mint(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(mintAmount)
+      ethereum.Value.fromUnsignedBigInt(mintAmount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -945,7 +945,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   nonces(param0: Address): BigInt {
     let result = super.call("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -953,7 +953,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
 
   try_nonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -966,7 +966,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -976,7 +976,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1007,8 +1007,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromUnsignedBigInt(epoch),
         ethereum.Value.fromUnsignedBigInt(indexDelta),
-        ethereum.Value.fromBoolean(positive)
-      ]
+        ethereum.Value.fromBoolean(positive),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1017,7 +1017,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   try_rebase(
     epoch: BigInt,
     indexDelta: BigInt,
-    positive: boolean
+    positive: boolean,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "rebase",
@@ -1025,8 +1025,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromUnsignedBigInt(epoch),
         ethereum.Value.fromUnsignedBigInt(indexDelta),
-        ethereum.Value.fromBoolean(positive)
-      ]
+        ethereum.Value.fromBoolean(positive),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1057,8 +1057,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(token),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1067,7 +1067,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   try_rescueTokens(
     token: Address,
     to: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "rescueTokens",
@@ -1075,8 +1075,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(token),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1118,7 +1118,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   transfer(dst: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(dst),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -1127,7 +1127,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   try_transfer(dst: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(dst),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1143,8 +1143,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(src),
         ethereum.Value.fromAddress(dst),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1153,7 +1153,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
   try_transferFrom(
     src: Address,
     dst: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -1161,8 +1161,8 @@ export class YamFinanceToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(src),
         ethereum.Value.fromAddress(dst),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1175,7 +1175,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "yamToFragment",
       "yamToFragment(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(yam)]
+      [ethereum.Value.fromUnsignedBigInt(yam)],
     );
 
     return result[0].toBigInt();
@@ -1185,7 +1185,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "yamToFragment",
       "yamToFragment(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(yam)]
+      [ethereum.Value.fromUnsignedBigInt(yam)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1198,7 +1198,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.call(
       "yamsScalingFactor",
       "yamsScalingFactor():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1208,7 +1208,7 @@ export class YamFinanceToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "yamsScalingFactor",
       "yamsScalingFactor():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -394,7 +394,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "COOLDOWN_SECONDS",
       "COOLDOWN_SECONDS():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -404,7 +404,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "COOLDOWN_SECONDS",
       "COOLDOWN_SECONDS():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -417,7 +417,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATE_BY_TYPE_TYPEHASH",
       "DELEGATE_BY_TYPE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -427,7 +427,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATE_BY_TYPE_TYPEHASH",
       "DELEGATE_BY_TYPE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -440,7 +440,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATE_TYPEHASH",
       "DELEGATE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -450,7 +450,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATE_TYPEHASH",
       "DELEGATE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -463,7 +463,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DISTRIBUTION_END",
       "DISTRIBUTION_END():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -473,7 +473,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DISTRIBUTION_END",
       "DISTRIBUTION_END():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -486,7 +486,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -496,7 +496,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -515,7 +515,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "EIP712_REVISION",
       "EIP712_REVISION():(bytes)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -528,7 +528,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "EMISSION_MANAGER",
       "EMISSION_MANAGER():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -538,7 +538,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "EMISSION_MANAGER",
       "EMISSION_MANAGER():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -551,7 +551,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -561,7 +561,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -610,7 +610,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "REWARDS_VAULT",
       "REWARDS_VAULT():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -659,7 +659,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "UNSTAKE_WINDOW",
       "UNSTAKE_WINDOW():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -672,7 +672,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "_aaveGovernance",
       "_aaveGovernance():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -682,7 +682,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_aaveGovernance",
       "_aaveGovernance():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -693,7 +693,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   _nonces(param0: Address): BigInt {
     let result = super.call("_nonces", "_nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -701,7 +701,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try__nonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("_nonces", "_nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -712,34 +712,34 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   _votingSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): StakedAaveToken___votingSnapshotsResult {
     let result = super.call(
       "_votingSnapshots",
       "_votingSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new StakedAaveToken___votingSnapshotsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try__votingSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<StakedAaveToken___votingSnapshotsResult> {
     let result = super.tryCall(
       "_votingSnapshots",
       "_votingSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -748,8 +748,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new StakedAaveToken___votingSnapshotsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -757,7 +757,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "_votingSnapshotsCounts",
       "_votingSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -767,7 +767,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_votingSnapshotsCounts",
       "_votingSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -780,7 +780,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
 
     return result[0].toBigInt();
@@ -790,7 +790,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -802,7 +802,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -811,7 +811,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -824,23 +824,23 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "assets",
       "assets(address):(uint128,uint128,uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return new StakedAaveToken__assetsResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt()
+      result[2].toBigInt(),
     );
   }
 
   try_assets(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<StakedAaveToken__assetsResult> {
     let result = super.tryCall(
       "assets",
       "assets(address):(uint128,uint128,uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -850,14 +850,14 @@ export class StakedAaveToken extends ethereum.SmartContract {
       new StakedAaveToken__assetsResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt()
-      )
+        value[2].toBigInt(),
+      ),
     );
   }
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -865,7 +865,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -895,8 +895,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -904,15 +904,15 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt
+    subtractedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -927,8 +927,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       "getDelegateeByType(address,uint8):(address)",
       [
         ethereum.Value.fromAddress(delegator),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toAddress();
@@ -936,15 +936,15 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_getDelegateeByType(
     delegator: Address,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "getDelegateeByType",
       "getDelegateeByType(address,uint8):(address)",
       [
         ethereum.Value.fromAddress(delegator),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -957,7 +957,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     fromCooldownTimestamp: BigInt,
     amountToReceive: BigInt,
     toAddress: Address,
-    toBalance: BigInt
+    toBalance: BigInt,
   ): BigInt {
     let result = super.call(
       "getNextCooldownTimestamp",
@@ -966,8 +966,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(fromCooldownTimestamp),
         ethereum.Value.fromUnsignedBigInt(amountToReceive),
         ethereum.Value.fromAddress(toAddress),
-        ethereum.Value.fromUnsignedBigInt(toBalance)
-      ]
+        ethereum.Value.fromUnsignedBigInt(toBalance),
+      ],
     );
 
     return result[0].toBigInt();
@@ -977,7 +977,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     fromCooldownTimestamp: BigInt,
     amountToReceive: BigInt,
     toAddress: Address,
-    toBalance: BigInt
+    toBalance: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getNextCooldownTimestamp",
@@ -986,8 +986,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
         ethereum.Value.fromUnsignedBigInt(fromCooldownTimestamp),
         ethereum.Value.fromUnsignedBigInt(amountToReceive),
         ethereum.Value.fromAddress(toAddress),
-        ethereum.Value.fromUnsignedBigInt(toBalance)
-      ]
+        ethereum.Value.fromUnsignedBigInt(toBalance),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -999,7 +999,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
   getPowerAtBlock(
     user: Address,
     blockNumber: BigInt,
-    delegationType: i32
+    delegationType: i32,
   ): BigInt {
     let result = super.call(
       "getPowerAtBlock",
@@ -1007,8 +1007,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(user),
         ethereum.Value.fromUnsignedBigInt(blockNumber),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1017,7 +1017,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
   try_getPowerAtBlock(
     user: Address,
     blockNumber: BigInt,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPowerAtBlock",
@@ -1025,8 +1025,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(user),
         ethereum.Value.fromUnsignedBigInt(blockNumber),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1041,8 +1041,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       "getPowerCurrent(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1050,15 +1050,15 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_getPowerCurrent(
     user: Address,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPowerCurrent",
       "getPowerCurrent(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1071,7 +1071,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "getTotalRewardsBalance",
       "getTotalRewardsBalance(address):(uint256)",
-      [ethereum.Value.fromAddress(staker)]
+      [ethereum.Value.fromAddress(staker)],
     );
 
     return result[0].toBigInt();
@@ -1081,7 +1081,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getTotalRewardsBalance",
       "getTotalRewardsBalance(address):(uint256)",
-      [ethereum.Value.fromAddress(staker)]
+      [ethereum.Value.fromAddress(staker)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1094,7 +1094,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "getUserAssetData",
       "getUserAssetData(address,address):(uint256)",
-      [ethereum.Value.fromAddress(user), ethereum.Value.fromAddress(asset)]
+      [ethereum.Value.fromAddress(user), ethereum.Value.fromAddress(asset)],
     );
 
     return result[0].toBigInt();
@@ -1102,12 +1102,12 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_getUserAssetData(
     user: Address,
-    asset: Address
+    asset: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getUserAssetData",
       "getUserAssetData(address,address):(uint256)",
-      [ethereum.Value.fromAddress(user), ethereum.Value.fromAddress(asset)]
+      [ethereum.Value.fromAddress(user), ethereum.Value.fromAddress(asset)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1122,8 +1122,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1131,15 +1131,15 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt
+    addedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1167,7 +1167,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "stakerRewardsToClaim",
       "stakerRewardsToClaim(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -1177,7 +1177,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "stakerRewardsToClaim",
       "stakerRewardsToClaim(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1190,7 +1190,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "stakersCooldowns",
       "stakersCooldowns(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -1200,7 +1200,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "stakersCooldowns",
       "stakersCooldowns(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1243,7 +1243,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.call(
       "totalSupplyAt",
       "totalSupplyAt(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)],
     );
 
     return result[0].toBigInt();
@@ -1253,7 +1253,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalSupplyAt",
       "totalSupplyAt(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1265,7 +1265,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
   transfer(recipient: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -1273,11 +1273,11 @@ export class StakedAaveToken extends ethereum.SmartContract {
 
   try_transfer(
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1293,8 +1293,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1303,7 +1303,7 @@ export class StakedAaveToken extends ethereum.SmartContract {
   try_transferFrom(
     sender: Address,
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -1311,8 +1311,8 @@ export class StakedAaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1478,9 +1478,7 @@ export class ConfigureAssetsCall__Inputs {
   }
 
   get assetsConfigInput(): Array<ConfigureAssetsCallAssetsConfigInputStruct> {
-    return this._call.inputValues[0].value.toTupleArray<
-      ConfigureAssetsCallAssetsConfigInputStruct
-    >();
+    return this._call.inputValues[0].value.toTupleArray<ConfigureAssetsCallAssetsConfigInputStruct>();
   }
 }
 

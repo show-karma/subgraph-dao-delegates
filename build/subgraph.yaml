@@ -3,15 +3,498 @@ schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum
-    name: Connext
-    network: gnosis
+    name: RariFoundation
+    network: mainnet
     source:
-      abi: Connext
-      address: "0x58b9cB810A68a7f3e1E4f8Cb45D1B9B3c79705E8"
-      startBlock: 29795027
+      address: "0x096Bd9a7a2e703670088C05035e23c7a9F428496"
+      abi: RariFoundation
+      startBlock: 15719153
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: RariFoundation
+          file: RariFoundation/abis/RariFoundation.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: RariFoundation/RariFoundation.wasm
+  - kind: ethereum/contract
+    name: ENSToken
+    network: mainnet
+    source:
+      address: "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72"
+      abi: ENSToken
+      startBlock: 13533400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: ENSToken
+          file: ENSToken/abis/ENSToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: ENSToken/ENSToken.wasm
+  - kind: ethereum/contract
+    name: GitcoinToken
+    network: mainnet
+    source:
+      address: "0xde30da39c46104798bb5aa3fe8b9e0e1f348163f"
+      abi: GitcoinToken
+      startBlock: 12422075
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: GitcoinToken
+          file: GitcoinToken/abis/GitcoinToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: GitcoinToken/GitcoinToken.wasm
+  - kind: ethereum/contract
+    name: IndexToken
+    network: mainnet
+    source:
+      address: "0x0954906da0Bf32d5479e25f46056d22f08464cab"
+      abi: IndexToken
+      startBlock: 11000400
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: IndexToken
+          file: IndexToken/abis/IndexToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: IndexToken/IndexToken.wasm
+  - kind: ethereum/contract
+    name: PoolTogetherToken
+    network: mainnet
+    source:
+      address: "0x0cec1a9154ff802e7934fc916ed7ca50bde6844e"
+      abi: PoolTogetherToken
+      startBlock: 11870113
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: PoolTogetherToken
+          file: PoolTogetherToken/abis/PoolTogetherToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: PoolTogetherToken/PoolTogetherToken.wasm
+  - kind: ethereum/contract
+    name: UniswapToken
+    network: mainnet
+    source:
+      address: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+      abi: UniswapToken
+      startBlock: 10861674
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: UniswapToken
+          file: UniswapToken/abis/UniswapToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: UniswapToken/UniswapToken.wasm
+  - kind: ethereum/contract
+    name: RariToken
+    network: mainnet
+    source:
+      address: "0xd291e7a03283640fdc51b121ac401383a46cc623"
+      abi: RariToken
+      startBlock: 11094181
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: RariToken
+          file: RariToken/abis/RariToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: RariToken/RariToken.wasm
+  - kind: ethereum/contract
+    name: IndexedToken
+    network: mainnet
+    source:
+      address: "0x86772b1409b61c639eaac9ba0acfbb6e238e5f83"
+      abi: IndexedToken
+      startBlock: 11457421
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: IndexedToken
+          file: IndexedToken/abis/IndexedToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: IndexedToken/IndexedToken.wasm
+  - kind: ethereum/contract
+    name: OlympusToken
+    network: mainnet
+    source:
+      address: "0x0ab87046fBb341D058F17CBC4c1133F25a20a52f"
+      abi: OlympusToken
+      startBlock: 13674957
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: OlympusToken
+          file: OlympusToken/abis/OlympusToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: OlympusToken/OlympusToken.wasm
+  - kind: ethereum/contract
+    name: AmpleforthToken
+    network: mainnet
+    source:
+      address: "0x77fba179c79de5b7653f68b5039af940ada60ce0"
+      abi: AmpleforthToken
+      startBlock: 12141775
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: AmpleforthToken
+          file: AmpleforthToken/abis/AmpleforthToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: AmpleforthToken/AmpleforthToken.wasm
+  - kind: ethereum/contract
+    name: InverseFinanceToken
+    network: mainnet
+    source:
+      address: "0x41d5d79431a913c4ae7d69a668ecdfe5ff9dfb68"
+      abi: InverseFinanceToken
+      startBlock: 11498340
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: InverseFinanceToken
+          file: InverseFinanceToken/abis/InverseFinanceToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: InverseFinanceToken/InverseFinanceToken.wasm
+  - kind: ethereum/contract
+    name: FeiProtocolToken
+    network: mainnet
+    source:
+      address: "0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B"
+      abi: FeiProtocolToken
+      startBlock: 12125705
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: FeiProtocolToken
+          file: FeiProtocolToken/abis/FeiProtocolToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: FeiProtocolToken/FeiProtocolToken.wasm
+  - kind: ethereum/contract
+    name: YamFinanceToken
+    network: mainnet
+    source:
+      address: "0x0AaCfbeC6a24756c20D41914F2caba817C0d8521"
+      abi: YamFinanceToken
+      startBlock: 10886913
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: YamFinanceToken
+          file: YamFinanceToken/abis/YamFinanceToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: YamFinanceToken/YamFinanceToken.wasm
+  - kind: ethereum/contract
+    name: CompoundGovernanceToken
+    network: mainnet
+    source:
+      address: "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+      abi: CompoundGovernanceToken
+      startBlock: 9601359
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: CompoundGovernanceToken
+          file: CompoundGovernanceToken/abis/CompoundGovernanceToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: CompoundGovernanceToken/CompoundGovernanceToken.wasm
+  - kind: ethereum/contract
+    name: AaveToken
+    network: mainnet
+    source:
+      address: "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"
+      abi: AaveToken
+      startBlock: 10926829
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: AaveToken
+          file: AaveToken/abis/AaveToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,uint8)
+          handler: delegateChanged
+        - event: DelegatedPowerChanged(indexed address,uint256,uint8)
+          handler: delegateVotesChanged
+      file: AaveToken/AaveToken.wasm
+  - kind: ethereum/contract
+    name: SushiSwapToken
+    network: mainnet
+    source:
+      address: "0x6B3595068778DD592e39A122f4f5a5cF09C90fE2"
+      abi: SushiSwapToken
+      startBlock: 10736094
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: SushiSwapToken
+          file: SushiSwapToken/abis/SushiSwapToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: SushiSwapToken/SushiSwapToken.wasm
+  - kind: ethereum/contract
+    name: HopExchangeToken
+    network: mainnet
+    source:
+      address: "0xc5102fE9359FD9a28f877a67E36B0F050d81a3CC"
+      abi: HopExchangeToken
+      startBlock: 14923678
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: HopExchangeToken
+          file: HopExchangeToken/abis/HopExchangeToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: HopExchangeToken/HopExchangeToken.wasm
+  - kind: ethereum/contract
+    name: IdleFinanceToken
+    network: mainnet
+    source:
+      address: "0x875773784Af8135eA0ef43b5a374AaD105c5D39e"
+      abi: IdleFinanceToken
+      startBlock: 11332000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: IdleFinanceToken
+          file: IdleFinanceToken/abis/IdleFinanceToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: IdleFinanceToken/IdleFinanceToken.wasm
+  - kind: ethereum/contract
+    name: DYDXToken
+    network: mainnet
+    source:
+      address: "0x92d6c1e31e14520e676a687f0a93788b716beff5"
+      abi: DYDXToken
+      startBlock: 12809555
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: DYDXToken
+          file: DYDXToken/abis/DyDxToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,uint8)
+          handler: delegateChanged
+        - event: DelegatedPowerChanged(indexed address,uint256,uint8)
+          handler: delegateVotesChanged
+      file: DYDXToken/DYDXToken.wasm
+  - kind: ethereum/contract
+    name: PaladinToken
+    network: mainnet
+    source:
+      address: "0x624D822934e87D3534E435b83ff5C19769Efd9f6"
+      abi: PaladinToken
+      startBlock: 14709709
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: PaladinToken
+          file: PaladinToken/abis/PaladinVoteABI.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: delegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: delegateVotesChanged
+      file: PaladinToken/PaladinToken.wasm
+  - kind: ethereum/contract
+    name: StakedAaveToken
+    network: mainnet
+    source:
+      address: "0x4da27a545c0c5B758a6BA100e3a049001de870f5"
+      abi: StakedAaveToken
+      startBlock: 10927018
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Delegate
+        - Delegator
+      abis:
+        - name: StakedAaveToken
+          file: StakedAaveToken/abis/StakedAaveToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,uint8)
+          handler: delegateChanged
+        - event: DelegatedPowerChanged(indexed address,uint256,uint8)
+          handler: delegateVotesChanged
+      file: AaveToken/AaveToken.wasm
+  - kind: ethereum
+    name: Connext
+    network: mainnet
+    source:
+      abi: Connext
+      address: "0xFE67A4450907459c3e1FFf623aA927dD4e28c67a"
+      startBlock: 16976695
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - DelegateChanged

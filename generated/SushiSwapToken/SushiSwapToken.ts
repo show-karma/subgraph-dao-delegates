@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -170,7 +170,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATION_TYPEHASH",
       "DELEGATION_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -180,7 +180,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATION_TYPEHASH",
       "DELEGATION_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -193,7 +193,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_TYPEHASH",
       "DOMAIN_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -203,7 +203,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_TYPEHASH",
       "DOMAIN_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -216,7 +216,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
 
     return result[0].toBigInt();
@@ -226,7 +226,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -238,7 +238,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -247,7 +247,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -258,7 +258,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -266,7 +266,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -277,34 +277,34 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): SushiSwapToken__checkpointsResult {
     let result = super.call(
       "checkpoints",
       "checkpoints(address,uint32):(uint32,uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new SushiSwapToken__checkpointsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<SushiSwapToken__checkpointsResult> {
     let result = super.tryCall(
       "checkpoints",
       "checkpoints(address,uint32):(uint32,uint256)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -313,8 +313,8 @@ export class SushiSwapToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new SushiSwapToken__checkpointsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -339,8 +339,8 @@ export class SushiSwapToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -348,15 +348,15 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt
+    subtractedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -367,7 +367,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   delegates(delegator: Address): Address {
     let result = super.call("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(delegator)
+      ethereum.Value.fromAddress(delegator),
     ]);
 
     return result[0].toAddress();
@@ -375,7 +375,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_delegates(delegator: Address): ethereum.CallResult<Address> {
     let result = super.tryCall("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(delegator)
+      ethereum.Value.fromAddress(delegator),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -388,7 +388,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.call(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
 
     return result[0].toBigInt();
@@ -398,7 +398,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -413,8 +413,8 @@ export class SushiSwapToken extends ethereum.SmartContract {
       "getPriorVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
 
     return result[0].toBigInt();
@@ -422,15 +422,15 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_getPriorVotes(
     account: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPriorVotes",
       "getPriorVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -445,8 +445,8 @@ export class SushiSwapToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -454,15 +454,15 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt
+    addedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -488,7 +488,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   nonces(param0: Address): BigInt {
     let result = super.call("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -496,7 +496,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_nonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -509,7 +509,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.call(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -519,7 +519,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "numCheckpoints",
       "numCheckpoints(address):(uint32)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -576,7 +576,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
   transfer(recipient: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -584,11 +584,11 @@ export class SushiSwapToken extends ethereum.SmartContract {
 
   try_transfer(
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -604,8 +604,8 @@ export class SushiSwapToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -614,7 +614,7 @@ export class SushiSwapToken extends ethereum.SmartContract {
   try_transferFrom(
     sender: Address,
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -622,8 +622,8 @@ export class SushiSwapToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

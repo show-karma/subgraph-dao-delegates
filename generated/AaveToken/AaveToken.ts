@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -148,7 +148,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATE_BY_TYPE_TYPEHASH",
       "DELEGATE_BY_TYPE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -158,7 +158,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATE_BY_TYPE_TYPEHASH",
       "DELEGATE_BY_TYPE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -171,7 +171,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATE_TYPEHASH",
       "DELEGATE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -181,7 +181,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATE_TYPEHASH",
       "DELEGATE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -194,7 +194,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -204,7 +204,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -223,7 +223,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "EIP712_REVISION",
       "EIP712_REVISION():(bytes)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -236,7 +236,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -246,7 +246,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -274,7 +274,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "_aaveGovernance",
       "_aaveGovernance():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -284,7 +284,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_aaveGovernance",
       "_aaveGovernance():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -295,7 +295,7 @@ export class AaveToken extends ethereum.SmartContract {
 
   _nonces(param0: Address): BigInt {
     let result = super.call("_nonces", "_nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -303,7 +303,7 @@ export class AaveToken extends ethereum.SmartContract {
 
   try__nonces(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("_nonces", "_nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -314,34 +314,34 @@ export class AaveToken extends ethereum.SmartContract {
 
   _votingSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): AaveToken___votingSnapshotsResult {
     let result = super.call(
       "_votingSnapshots",
       "_votingSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new AaveToken___votingSnapshotsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try__votingSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<AaveToken___votingSnapshotsResult> {
     let result = super.tryCall(
       "_votingSnapshots",
       "_votingSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -350,8 +350,8 @@ export class AaveToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new AaveToken___votingSnapshotsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -359,7 +359,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "_votingSnapshotsCounts",
       "_votingSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -369,7 +369,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_votingSnapshotsCounts",
       "_votingSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -382,7 +382,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
 
     return result[0].toBigInt();
@@ -392,7 +392,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -404,7 +404,7 @@ export class AaveToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -413,7 +413,7 @@ export class AaveToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -424,7 +424,7 @@ export class AaveToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -432,7 +432,7 @@ export class AaveToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -462,8 +462,8 @@ export class AaveToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -471,15 +471,15 @@ export class AaveToken extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt
+    subtractedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -494,8 +494,8 @@ export class AaveToken extends ethereum.SmartContract {
       "getDelegateeByType(address,uint8):(address)",
       [
         ethereum.Value.fromAddress(delegator),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toAddress();
@@ -503,15 +503,15 @@ export class AaveToken extends ethereum.SmartContract {
 
   try_getDelegateeByType(
     delegator: Address,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "getDelegateeByType",
       "getDelegateeByType(address,uint8):(address)",
       [
         ethereum.Value.fromAddress(delegator),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -523,7 +523,7 @@ export class AaveToken extends ethereum.SmartContract {
   getPowerAtBlock(
     user: Address,
     blockNumber: BigInt,
-    delegationType: i32
+    delegationType: i32,
   ): BigInt {
     let result = super.call(
       "getPowerAtBlock",
@@ -531,8 +531,8 @@ export class AaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(user),
         ethereum.Value.fromUnsignedBigInt(blockNumber),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toBigInt();
@@ -541,7 +541,7 @@ export class AaveToken extends ethereum.SmartContract {
   try_getPowerAtBlock(
     user: Address,
     blockNumber: BigInt,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPowerAtBlock",
@@ -549,8 +549,8 @@ export class AaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(user),
         ethereum.Value.fromUnsignedBigInt(blockNumber),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -565,8 +565,8 @@ export class AaveToken extends ethereum.SmartContract {
       "getPowerCurrent(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toBigInt();
@@ -574,15 +574,15 @@ export class AaveToken extends ethereum.SmartContract {
 
   try_getPowerCurrent(
     user: Address,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPowerCurrent",
       "getPowerCurrent(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -597,8 +597,8 @@ export class AaveToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -606,15 +606,15 @@ export class AaveToken extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt
+    addedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -672,7 +672,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.call(
       "totalSupplyAt",
       "totalSupplyAt(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)],
     );
 
     return result[0].toBigInt();
@@ -682,7 +682,7 @@ export class AaveToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "totalSupplyAt",
       "totalSupplyAt(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -694,7 +694,7 @@ export class AaveToken extends ethereum.SmartContract {
   transfer(recipient: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -702,11 +702,11 @@ export class AaveToken extends ethereum.SmartContract {
 
   try_transfer(
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -722,8 +722,8 @@ export class AaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -732,7 +732,7 @@ export class AaveToken extends ethereum.SmartContract {
   try_transferFrom(
     sender: Address,
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -740,8 +740,8 @@ export class AaveToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -619,7 +619,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "COOLDOWN_PERIOD",
       "COOLDOWN_PERIOD():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -629,7 +629,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "COOLDOWN_PERIOD",
       "COOLDOWN_PERIOD():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -657,7 +657,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "MAX_LOCK_DURATION",
       "MAX_LOCK_DURATION():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -667,7 +667,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "MAX_LOCK_DURATION",
       "MAX_LOCK_DURATION():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -680,7 +680,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "MIN_LOCK_DURATION",
       "MIN_LOCK_DURATION():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -690,7 +690,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "MIN_LOCK_DURATION",
       "MIN_LOCK_DURATION():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -769,7 +769,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "UNSTAKE_PERIOD",
       "UNSTAKE_PERIOD():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -797,23 +797,23 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "allBalancesOf",
       "allBalancesOf(address):(uint256,uint256,uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return new PaladinToken__allBalancesOfResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
-      result[2].toBigInt()
+      result[2].toBigInt(),
     );
   }
 
   try_allBalancesOf(
-    user: Address
+    user: Address,
   ): ethereum.CallResult<PaladinToken__allBalancesOfResult> {
     let result = super.tryCall(
       "allBalancesOf",
       "allBalancesOf(address):(uint256,uint256,uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -823,8 +823,8 @@ export class PaladinToken extends ethereum.SmartContract {
       new PaladinToken__allBalancesOfResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
-        value[2].toBigInt()
-      )
+        value[2].toBigInt(),
+      ),
     );
   }
 
@@ -832,7 +832,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
 
     return result[0].toBigInt();
@@ -842,7 +842,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -854,7 +854,7 @@ export class PaladinToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -863,7 +863,7 @@ export class PaladinToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -876,7 +876,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "availableBalanceOf",
       "availableBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return result[0].toBigInt();
@@ -886,7 +886,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "availableBalanceOf",
       "availableBalanceOf(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -897,7 +897,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -905,7 +905,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -918,7 +918,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "baseLockBonusRatio",
       "baseLockBonusRatio():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -928,7 +928,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "baseLockBonusRatio",
       "baseLockBonusRatio():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -941,7 +941,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "bonusLockVoteRatio",
       "bonusLockVoteRatio():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -951,7 +951,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "bonusLockVoteRatio",
       "bonusLockVoteRatio():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -962,34 +962,34 @@ export class PaladinToken extends ethereum.SmartContract {
 
   checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): PaladinToken__checkpointsResult {
     let result = super.call(
       "checkpoints",
       "checkpoints(address,uint256):(uint32,uint224)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new PaladinToken__checkpointsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_checkpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<PaladinToken__checkpointsResult> {
     let result = super.tryCall(
       "checkpoints",
       "checkpoints(address,uint256):(uint32,uint224)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -998,8 +998,8 @@ export class PaladinToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new PaladinToken__checkpointsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -1007,7 +1007,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "claimableRewards",
       "claimableRewards(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -1017,7 +1017,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "claimableRewards",
       "claimableRewards(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1028,7 +1028,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   cooldowns(param0: Address): BigInt {
     let result = super.call("cooldowns", "cooldowns(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -1036,7 +1036,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_cooldowns(param0: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("cooldowns", "cooldowns(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1049,7 +1049,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "currentDropPerSecond",
       "currentDropPerSecond():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1059,7 +1059,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "currentDropPerSecond",
       "currentDropPerSecond():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1072,7 +1072,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "currentTotalLocked",
       "currentTotalLocked():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1082,7 +1082,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "currentTotalLocked",
       "currentTotalLocked():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1112,8 +1112,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1121,15 +1121,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt
+    subtractedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1140,34 +1140,34 @@ export class PaladinToken extends ethereum.SmartContract {
 
   delegateCheckpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): PaladinToken__delegateCheckpointsResult {
     let result = super.call(
       "delegateCheckpoints",
       "delegateCheckpoints(address,uint256):(uint32,address)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new PaladinToken__delegateCheckpointsResult(
       result[0].toBigInt(),
-      result[1].toAddress()
+      result[1].toAddress(),
     );
   }
 
   try_delegateCheckpoints(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<PaladinToken__delegateCheckpointsResult> {
     let result = super.tryCall(
       "delegateCheckpoints",
       "delegateCheckpoints(address,uint256):(uint32,address)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1176,14 +1176,14 @@ export class PaladinToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new PaladinToken__delegateCheckpointsResult(
         value[0].toBigInt(),
-        value[1].toAddress()
-      )
+        value[1].toAddress(),
+      ),
     );
   }
 
   delegates(param0: Address): Address {
     let result = super.call("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toAddress();
@@ -1191,7 +1191,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_delegates(param0: Address): ethereum.CallResult<Address> {
     let result = super.tryCall("delegates", "delegates(address):(address)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1204,7 +1204,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "dropDecreaseDuration",
       "dropDecreaseDuration():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1214,7 +1214,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "dropDecreaseDuration",
       "dropDecreaseDuration():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1244,8 +1244,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "emergencyWithdraw(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromAddress(receiver)
-      ]
+        ethereum.Value.fromAddress(receiver),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1253,15 +1253,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_emergencyWithdraw(
     amount: BigInt,
-    receiver: Address
+    receiver: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "emergencyWithdraw",
       "emergencyWithdraw(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromAddress(receiver)
-      ]
+        ethereum.Value.fromAddress(receiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1274,7 +1274,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "endDropPerSecond",
       "endDropPerSecond():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1284,7 +1284,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "endDropPerSecond",
       "endDropPerSecond():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1297,7 +1297,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "estimateClaimableRewards",
       "estimateClaimableRewards(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return result[0].toBigInt();
@@ -1307,7 +1307,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "estimateClaimableRewards",
       "estimateClaimableRewards(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1320,7 +1320,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "futureSmartWalletChecker",
       "futureSmartWalletChecker():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -1330,7 +1330,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "futureSmartWalletChecker",
       "futureSmartWalletChecker():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1343,21 +1343,19 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "getCurrentTotalLock",
       "getCurrentTotalLock():((uint224,uint32))",
-      []
+      [],
     );
 
     return changetype<PaladinToken__getCurrentTotalLockResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
-  try_getCurrentTotalLock(): ethereum.CallResult<
-    PaladinToken__getCurrentTotalLockResultValue0Struct
-  > {
+  try_getCurrentTotalLock(): ethereum.CallResult<PaladinToken__getCurrentTotalLockResultValue0Struct> {
     let result = super.tryCall(
       "getCurrentTotalLock",
       "getCurrentTotalLock():((uint224,uint32))",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1365,8 +1363,8 @@ export class PaladinToken extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<PaladinToken__getCurrentTotalLockResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -1374,7 +1372,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return result[0].toBigInt();
@@ -1384,7 +1382,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getCurrentVotes",
       "getCurrentVotes(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1396,7 +1394,7 @@ export class PaladinToken extends ethereum.SmartContract {
   getNewReceiverCooldown(
     sender: Address,
     receiver: Address,
-    amount: BigInt
+    amount: BigInt,
   ): BigInt {
     let result = super.call(
       "getNewReceiverCooldown",
@@ -1404,8 +1402,8 @@ export class PaladinToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(receiver),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1414,7 +1412,7 @@ export class PaladinToken extends ethereum.SmartContract {
   try_getNewReceiverCooldown(
     sender: Address,
     receiver: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getNewReceiverCooldown",
@@ -1422,8 +1420,8 @@ export class PaladinToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(receiver),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1438,8 +1436,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "getPastDelegate(address,uint256):(address)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
 
     return result[0].toAddress();
@@ -1447,15 +1445,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_getPastDelegate(
     account: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "getPastDelegate",
       "getPastDelegate(address,uint256):(address)",
       [
         ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1465,26 +1463,26 @@ export class PaladinToken extends ethereum.SmartContract {
   }
 
   getPastTotalLock(
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): PaladinToken__getPastTotalLockResultValue0Struct {
     let result = super.call(
       "getPastTotalLock",
       "getPastTotalLock(uint256):((uint224,uint32))",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)],
     );
 
     return changetype<PaladinToken__getPastTotalLockResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getPastTotalLock(
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<PaladinToken__getPastTotalLockResultValue0Struct> {
     let result = super.tryCall(
       "getPastTotalLock",
       "getPastTotalLock(uint256):((uint224,uint32))",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1492,8 +1490,8 @@ export class PaladinToken extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<PaladinToken__getPastTotalLockResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -1503,8 +1501,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "getPastVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1512,15 +1510,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_getPastVotes(
     user: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPastVotes",
       "getPastVotes(address,uint256):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1533,7 +1531,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "getTotalLockLength",
       "getTotalLockLength():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1543,7 +1541,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getTotalLockLength",
       "getTotalLockLength():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1556,21 +1554,21 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "getUserLock",
       "getUserLock(address):((uint128,uint48,uint48,uint32))",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return changetype<PaladinToken__getUserLockResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getUserLock(
-    user: Address
+    user: Address,
   ): ethereum.CallResult<PaladinToken__getUserLockResultValue0Struct> {
     let result = super.tryCall(
       "getUserLock",
       "getUserLock(address):((uint128,uint48,uint48,uint32))",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1578,8 +1576,8 @@ export class PaladinToken extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<PaladinToken__getUserLockResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -1587,7 +1585,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "getUserLockCount",
       "getUserLockCount(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return result[0].toBigInt();
@@ -1597,7 +1595,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "getUserLockCount",
       "getUserLockCount(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1608,33 +1606,33 @@ export class PaladinToken extends ethereum.SmartContract {
 
   getUserPastLock(
     user: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): PaladinToken__getUserPastLockResultValue0Struct {
     let result = super.call(
       "getUserPastLock",
       "getUserPastLock(address,uint256):((uint128,uint48,uint48,uint32))",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
 
     return changetype<PaladinToken__getUserPastLockResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getUserPastLock(
     user: Address,
-    blockNumber: BigInt
+    blockNumber: BigInt,
   ): ethereum.CallResult<PaladinToken__getUserPastLockResultValue0Struct> {
     let result = super.tryCall(
       "getUserPastLock",
       "getUserPastLock(address,uint256):((uint128,uint48,uint48,uint32))",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
+        ethereum.Value.fromUnsignedBigInt(blockNumber),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1642,8 +1640,8 @@ export class PaladinToken extends ethereum.SmartContract {
     let value = result.value;
     return ethereum.CallResult.fromValue(
       changetype<PaladinToken__getUserPastLockResultValue0Struct>(
-        value[0].toTuple()
-      )
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -1651,12 +1649,12 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "globalRewards",
       "globalRewards():(uint128,uint128)",
-      []
+      [],
     );
 
     return new PaladinToken__globalRewardsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
@@ -1664,7 +1662,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "globalRewards",
       "globalRewards():(uint128,uint128)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1673,8 +1671,8 @@ export class PaladinToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new PaladinToken__globalRewardsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -1684,8 +1682,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1693,15 +1691,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt
+    addedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1714,7 +1712,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "kickRatioPerWeek",
       "kickRatioPerWeek():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1724,7 +1722,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "kickRatioPerWeek",
       "kickRatioPerWeek():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1743,7 +1741,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "lastDropUpdate",
       "lastDropUpdate():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1756,7 +1754,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "lastRewardUpdate",
       "lastRewardUpdate():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1766,7 +1764,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "lastRewardUpdate",
       "lastRewardUpdate():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1779,7 +1777,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "maxLockBonusRatio",
       "maxLockBonusRatio():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1789,7 +1787,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "maxLockBonusRatio",
       "maxLockBonusRatio():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1802,7 +1800,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "minLockBonusRatio",
       "minLockBonusRatio():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1812,7 +1810,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "minLockBonusRatio",
       "minLockBonusRatio():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1840,7 +1838,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "numCheckpoints",
       "numCheckpoints(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
 
     return result[0].toBigInt();
@@ -1850,7 +1848,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "numCheckpoints",
       "numCheckpoints(address):(uint256)",
-      [ethereum.Value.fromAddress(account)]
+      [ethereum.Value.fromAddress(account)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1923,7 +1921,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "rewardsLastUpdate",
       "rewardsLastUpdate(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return result[0].toBigInt();
@@ -1933,7 +1931,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "rewardsLastUpdate",
       "rewardsLastUpdate(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1961,7 +1959,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "smartWalletChecker",
       "smartWalletChecker():(address)",
-      []
+      [],
     );
 
     return result[0].toAddress();
@@ -1971,7 +1969,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "smartWalletChecker",
       "smartWalletChecker():(address)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1982,7 +1980,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   stake(amount: BigInt): BigInt {
     let result = super.call("stake", "stake(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBigInt();
@@ -1990,7 +1988,7 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_stake(amount: BigInt): ethereum.CallResult<BigInt> {
     let result = super.tryCall("stake", "stake(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2005,8 +2003,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "stakeAndIncreaseLock(uint256,uint256):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromUnsignedBigInt(duration)
-      ]
+        ethereum.Value.fromUnsignedBigInt(duration),
+      ],
     );
 
     return result[0].toBigInt();
@@ -2014,15 +2012,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_stakeAndIncreaseLock(
     amount: BigInt,
-    duration: BigInt
+    duration: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "stakeAndIncreaseLock",
       "stakeAndIncreaseLock(uint256,uint256):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromUnsignedBigInt(duration)
-      ]
+        ethereum.Value.fromUnsignedBigInt(duration),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2037,8 +2035,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "stakeAndLock(uint256,uint256):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromUnsignedBigInt(duration)
-      ]
+        ethereum.Value.fromUnsignedBigInt(duration),
+      ],
     );
 
     return result[0].toBigInt();
@@ -2046,15 +2044,15 @@ export class PaladinToken extends ethereum.SmartContract {
 
   try_stakeAndLock(
     amount: BigInt,
-    duration: BigInt
+    duration: BigInt,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "stakeAndLock",
       "stakeAndLock(uint256,uint256):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromUnsignedBigInt(duration)
-      ]
+        ethereum.Value.fromUnsignedBigInt(duration),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2067,7 +2065,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "startDropPerSecond",
       "startDropPerSecond():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -2077,7 +2075,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "startDropPerSecond",
       "startDropPerSecond():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2090,7 +2088,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "startDropTimestamp",
       "startDropTimestamp():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -2100,7 +2098,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "startDropTimestamp",
       "startDropTimestamp():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2128,22 +2126,22 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "totalLocks",
       "totalLocks(uint256):(uint224,uint32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return new PaladinToken__totalLocksResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_totalLocks(
-    param0: BigInt
+    param0: BigInt,
   ): ethereum.CallResult<PaladinToken__totalLocksResult> {
     let result = super.tryCall(
       "totalLocks",
       "totalLocks(uint256):(uint224,uint32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2152,8 +2150,8 @@ export class PaladinToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new PaladinToken__totalLocksResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -2175,7 +2173,7 @@ export class PaladinToken extends ethereum.SmartContract {
   transfer(to: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -2184,7 +2182,7 @@ export class PaladinToken extends ethereum.SmartContract {
   try_transfer(to: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(to),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2200,8 +2198,8 @@ export class PaladinToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -2210,7 +2208,7 @@ export class PaladinToken extends ethereum.SmartContract {
   try_transferFrom(
     from: Address,
     to: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -2218,8 +2216,8 @@ export class PaladinToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(from),
         ethereum.Value.fromAddress(to),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2231,7 +2229,7 @@ export class PaladinToken extends ethereum.SmartContract {
   unstake(amount: BigInt, receiver: Address): BigInt {
     let result = super.call("unstake", "unstake(uint256,address):(uint256)", [
       ethereum.Value.fromUnsignedBigInt(amount),
-      ethereum.Value.fromAddress(receiver)
+      ethereum.Value.fromAddress(receiver),
     ]);
 
     return result[0].toBigInt();
@@ -2243,8 +2241,8 @@ export class PaladinToken extends ethereum.SmartContract {
       "unstake(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amount),
-        ethereum.Value.fromAddress(receiver)
-      ]
+        ethereum.Value.fromAddress(receiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2257,7 +2255,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "userBonusRatioDecrease",
       "userBonusRatioDecrease(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -2267,7 +2265,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "userBonusRatioDecrease",
       "userBonusRatioDecrease(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2280,7 +2278,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "userCurrentBonusRatio",
       "userCurrentBonusRatio(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -2290,7 +2288,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "userCurrentBonusRatio",
       "userCurrentBonusRatio(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2305,29 +2303,29 @@ export class PaladinToken extends ethereum.SmartContract {
       "userLocks(address,uint256):(uint128,uint48,uint48,uint32)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new PaladinToken__userLocksResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
       result[2].toBigInt(),
-      result[3].toBigInt()
+      result[3].toBigInt(),
     );
   }
 
   try_userLocks(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<PaladinToken__userLocksResult> {
     let result = super.tryCall(
       "userLocks",
       "userLocks(address,uint256):(uint128,uint48,uint48,uint32)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2338,8 +2336,8 @@ export class PaladinToken extends ethereum.SmartContract {
         value[0].toBigInt(),
         value[1].toBigInt(),
         value[2].toBigInt(),
-        value[3].toBigInt()
-      )
+        value[3].toBigInt(),
+      ),
     );
   }
 
@@ -2347,7 +2345,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "userRewardIndex",
       "userRewardIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
 
     return result[0].toBigInt();
@@ -2357,7 +2355,7 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "userRewardIndex",
       "userRewardIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(user)]
+      [ethereum.Value.fromAddress(user)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2370,22 +2368,22 @@ export class PaladinToken extends ethereum.SmartContract {
     let result = super.call(
       "userRewardStates",
       "userRewardStates(address):(uint128,uint128)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return new PaladinToken__userRewardStatesResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try_userRewardStates(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<PaladinToken__userRewardStatesResult> {
     let result = super.tryCall(
       "userRewardStates",
       "userRewardStates(address):(uint128,uint128)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2394,8 +2392,8 @@ export class PaladinToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new PaladinToken__userRewardStatesResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 }

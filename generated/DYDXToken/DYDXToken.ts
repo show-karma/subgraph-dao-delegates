@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class Approval extends ethereum.Event {
@@ -260,7 +260,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATE_BY_TYPE_TYPEHASH",
       "DELEGATE_BY_TYPE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -270,7 +270,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATE_BY_TYPE_TYPEHASH",
       "DELEGATE_BY_TYPE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -283,7 +283,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "DELEGATE_TYPEHASH",
       "DELEGATE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -293,7 +293,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DELEGATE_TYPEHASH",
       "DELEGATE_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -306,7 +306,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -316,7 +316,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "DOMAIN_SEPARATOR",
       "DOMAIN_SEPARATOR():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -335,7 +335,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "EIP712_DOMAIN",
       "EIP712_DOMAIN():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -354,7 +354,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "EIP712_VERSION",
       "EIP712_VERSION():(bytes)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -373,7 +373,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "INITIAL_SUPPLY",
       "INITIAL_SUPPLY():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -386,7 +386,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "MINT_MAX_PERCENT",
       "MINT_MAX_PERCENT():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -396,7 +396,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "MINT_MAX_PERCENT",
       "MINT_MAX_PERCENT():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -409,7 +409,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "MINT_MIN_INTERVAL",
       "MINT_MIN_INTERVAL():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -419,7 +419,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "MINT_MIN_INTERVAL",
       "MINT_MIN_INTERVAL():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -432,7 +432,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
 
     return result[0].toBytes();
@@ -442,7 +442,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "PERMIT_TYPEHASH",
       "PERMIT_TYPEHASH():(bytes32)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -455,7 +455,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "TRANSFER_RESTRICTION_LIFTED_NO_LATER_THAN",
       "TRANSFER_RESTRICTION_LIFTED_NO_LATER_THAN():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -465,7 +465,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "TRANSFER_RESTRICTION_LIFTED_NO_LATER_THAN",
       "TRANSFER_RESTRICTION_LIFTED_NO_LATER_THAN():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -478,7 +478,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_mintingRestrictedBefore",
       "_mintingRestrictedBefore():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -488,7 +488,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_mintingRestrictedBefore",
       "_mintingRestrictedBefore():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -501,19 +501,19 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_propositionPowerDelegates",
       "_propositionPowerDelegates(address):(address)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toAddress();
   }
 
   try__propositionPowerDelegates(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "_propositionPowerDelegates",
       "_propositionPowerDelegates(address):(address)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -524,34 +524,34 @@ export class DYDXToken extends ethereum.SmartContract {
 
   _propositionPowerSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): DYDXToken___propositionPowerSnapshotsResult {
     let result = super.call(
       "_propositionPowerSnapshots",
       "_propositionPowerSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new DYDXToken___propositionPowerSnapshotsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try__propositionPowerSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<DYDXToken___propositionPowerSnapshotsResult> {
     let result = super.tryCall(
       "_propositionPowerSnapshots",
       "_propositionPowerSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -560,8 +560,8 @@ export class DYDXToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new DYDXToken___propositionPowerSnapshotsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -569,19 +569,19 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_propositionPowerSnapshotsCounts",
       "_propositionPowerSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
   }
 
   try__propositionPowerSnapshotsCounts(
-    param0: Address
+    param0: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "_propositionPowerSnapshotsCounts",
       "_propositionPowerSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -594,7 +594,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_tokenTransferAllowlist",
       "_tokenTransferAllowlist(address):(bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBoolean();
@@ -604,7 +604,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_tokenTransferAllowlist",
       "_tokenTransferAllowlist(address):(bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -614,27 +614,27 @@ export class DYDXToken extends ethereum.SmartContract {
   }
 
   _totalSupplySnapshots(
-    param0: BigInt
+    param0: BigInt,
   ): DYDXToken___totalSupplySnapshotsResult {
     let result = super.call(
       "_totalSupplySnapshots",
       "_totalSupplySnapshots(uint256):(uint128,uint128)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return new DYDXToken___totalSupplySnapshotsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try__totalSupplySnapshots(
-    param0: BigInt
+    param0: BigInt,
   ): ethereum.CallResult<DYDXToken___totalSupplySnapshotsResult> {
     let result = super.tryCall(
       "_totalSupplySnapshots",
       "_totalSupplySnapshots(uint256):(uint128,uint128)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -643,8 +643,8 @@ export class DYDXToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new DYDXToken___totalSupplySnapshotsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -652,7 +652,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_totalSupplySnapshotsCount",
       "_totalSupplySnapshotsCount():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -662,7 +662,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_totalSupplySnapshotsCount",
       "_totalSupplySnapshotsCount():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -675,7 +675,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_transfersRestrictedBefore",
       "_transfersRestrictedBefore():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -685,7 +685,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_transfersRestrictedBefore",
       "_transfersRestrictedBefore():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -698,7 +698,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_votingDelegates",
       "_votingDelegates(address):(address)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toAddress();
@@ -708,7 +708,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_votingDelegates",
       "_votingDelegates(address):(address)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -719,34 +719,34 @@ export class DYDXToken extends ethereum.SmartContract {
 
   _votingSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): DYDXToken___votingSnapshotsResult {
     let result = super.call(
       "_votingSnapshots",
       "_votingSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
 
     return new DYDXToken___votingSnapshotsResult(
       result[0].toBigInt(),
-      result[1].toBigInt()
+      result[1].toBigInt(),
     );
   }
 
   try__votingSnapshots(
     param0: Address,
-    param1: BigInt
+    param1: BigInt,
   ): ethereum.CallResult<DYDXToken___votingSnapshotsResult> {
     let result = super.tryCall(
       "_votingSnapshots",
       "_votingSnapshots(address,uint256):(uint128,uint128)",
       [
         ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromUnsignedBigInt(param1)
-      ]
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -755,8 +755,8 @@ export class DYDXToken extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new DYDXToken___votingSnapshotsResult(
         value[0].toBigInt(),
-        value[1].toBigInt()
-      )
+        value[1].toBigInt(),
+      ),
     );
   }
 
@@ -764,7 +764,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "_votingSnapshotsCounts",
       "_votingSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -774,7 +774,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "_votingSnapshotsCounts",
       "_votingSnapshotsCounts(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -787,7 +787,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.call(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
 
     return result[0].toBigInt();
@@ -797,7 +797,7 @@ export class DYDXToken extends ethereum.SmartContract {
     let result = super.tryCall(
       "allowance",
       "allowance(address,address):(uint256)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)]
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(spender)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -809,7 +809,7 @@ export class DYDXToken extends ethereum.SmartContract {
   approve(spender: Address, amount: BigInt): boolean {
     let result = super.call("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -818,7 +818,7 @@ export class DYDXToken extends ethereum.SmartContract {
   try_approve(spender: Address, amount: BigInt): ethereum.CallResult<boolean> {
     let result = super.tryCall("approve", "approve(address,uint256):(bool)", [
       ethereum.Value.fromAddress(spender),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -829,7 +829,7 @@ export class DYDXToken extends ethereum.SmartContract {
 
   balanceOf(account: Address): BigInt {
     let result = super.call("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
 
     return result[0].toBigInt();
@@ -837,7 +837,7 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_balanceOf(account: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("balanceOf", "balanceOf(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
+      ethereum.Value.fromAddress(account),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -867,8 +867,8 @@ export class DYDXToken extends ethereum.SmartContract {
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -876,15 +876,15 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_decreaseAllowance(
     spender: Address,
-    subtractedValue: BigInt
+    subtractedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "decreaseAllowance",
       "decreaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(subtractedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(subtractedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -899,8 +899,8 @@ export class DYDXToken extends ethereum.SmartContract {
       "getDelegateeByType(address,uint8):(address)",
       [
         ethereum.Value.fromAddress(delegator),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toAddress();
@@ -908,15 +908,15 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_getDelegateeByType(
     delegator: Address,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<Address> {
     let result = super.tryCall(
       "getDelegateeByType",
       "getDelegateeByType(address,uint8):(address)",
       [
         ethereum.Value.fromAddress(delegator),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -928,7 +928,7 @@ export class DYDXToken extends ethereum.SmartContract {
   getPowerAtBlock(
     user: Address,
     blockNumber: BigInt,
-    delegationType: i32
+    delegationType: i32,
   ): BigInt {
     let result = super.call(
       "getPowerAtBlock",
@@ -936,8 +936,8 @@ export class DYDXToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(user),
         ethereum.Value.fromUnsignedBigInt(blockNumber),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toBigInt();
@@ -946,7 +946,7 @@ export class DYDXToken extends ethereum.SmartContract {
   try_getPowerAtBlock(
     user: Address,
     blockNumber: BigInt,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPowerAtBlock",
@@ -954,8 +954,8 @@ export class DYDXToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(user),
         ethereum.Value.fromUnsignedBigInt(blockNumber),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -970,8 +970,8 @@ export class DYDXToken extends ethereum.SmartContract {
       "getPowerCurrent(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
 
     return result[0].toBigInt();
@@ -979,15 +979,15 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_getPowerCurrent(
     user: Address,
-    delegationType: i32
+    delegationType: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "getPowerCurrent",
       "getPowerCurrent(address,uint8):(uint256)",
       [
         ethereum.Value.fromAddress(user),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType))
-      ]
+        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(delegationType)),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1002,8 +1002,8 @@ export class DYDXToken extends ethereum.SmartContract {
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1011,15 +1011,15 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_increaseAllowance(
     spender: Address,
-    addedValue: BigInt
+    addedValue: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "increaseAllowance",
       "increaseAllowance(address,uint256):(bool)",
       [
         ethereum.Value.fromAddress(spender),
-        ethereum.Value.fromUnsignedBigInt(addedValue)
-      ]
+        ethereum.Value.fromUnsignedBigInt(addedValue),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1045,7 +1045,7 @@ export class DYDXToken extends ethereum.SmartContract {
 
   nonces(owner: Address): BigInt {
     let result = super.call("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(owner)
+      ethereum.Value.fromAddress(owner),
     ]);
 
     return result[0].toBigInt();
@@ -1053,7 +1053,7 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_nonces(owner: Address): ethereum.CallResult<BigInt> {
     let result = super.tryCall("nonces", "nonces(address):(uint256)", [
-      ethereum.Value.fromAddress(owner)
+      ethereum.Value.fromAddress(owner),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1110,7 +1110,7 @@ export class DYDXToken extends ethereum.SmartContract {
   transfer(recipient: Address, amount: BigInt): boolean {
     let result = super.call("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
 
     return result[0].toBoolean();
@@ -1118,11 +1118,11 @@ export class DYDXToken extends ethereum.SmartContract {
 
   try_transfer(
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall("transfer", "transfer(address,uint256):(bool)", [
       ethereum.Value.fromAddress(recipient),
-      ethereum.Value.fromUnsignedBigInt(amount)
+      ethereum.Value.fromUnsignedBigInt(amount),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1138,8 +1138,8 @@ export class DYDXToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1148,7 +1148,7 @@ export class DYDXToken extends ethereum.SmartContract {
   try_transferFrom(
     sender: Address,
     recipient: Address,
-    amount: BigInt
+    amount: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "transferFrom",
@@ -1156,8 +1156,8 @@ export class DYDXToken extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(sender),
         ethereum.Value.fromAddress(recipient),
-        ethereum.Value.fromUnsignedBigInt(amount)
-      ]
+        ethereum.Value.fromUnsignedBigInt(amount),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
