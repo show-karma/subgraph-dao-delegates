@@ -2,12 +2,12 @@
   "name": "dao-delegates",
   "license": "UNLICENSED",
   "scripts": {
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --product hosted-service show-karma/dao-delegates",
-    "create-local": "graph create --node http://localhost:8020/ dao-delegates",
-    "remove-local": "graph remove --node http://localhost:8020/ dao-delegates",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dao-delegates",
+    "codegen": "node_modules/.bin/graph codegen",
+    "build": "node_modules/.bin/graph build",
+    "deploy": "node_modules/.bin/graph deploy --product hosted-service show-karma/dao-delegates",
+    "create-local": "node_modules/.bin/graph create --node http://localhost:8020/ dao-delegates",
+    "remove-local": "node_modules/.bin/graph remove --node http://localhost:8020/ dao-delegates",
+    "deploy-local": "node_modules/.bin/graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dao-delegates",
 
     "deploy:mainnet": "node_modules/.bin/graph codegen subgraph.yaml && node_modules/.bin/graph build subgraph.yaml && node_modules/.bin/graph deploy --studio subgraph-dao-delegates"
   },
