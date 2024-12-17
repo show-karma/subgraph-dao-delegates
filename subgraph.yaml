@@ -141,29 +141,6 @@ dataSources:
           handler: delegateVotesChanged
       file: ./src/mainnet/uniswap_mapping.ts
   - kind: ethereum/contract
-    name: RariToken
-    network: mainnet
-    source:
-      address: "0xd291e7a03283640fdc51b121ac401383a46cc623"
-      abi: RariToken
-      startBlock: 11094181
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - Delegate
-        - Delegator
-      abis:
-        - name: RariToken
-          file: ./abis/RariToken.json
-      eventHandlers:
-        - event: DelegateChanged(indexed address,indexed address,indexed address)
-          handler: delegateChanged
-        - event: DelegateVotesChanged(indexed address,uint256,uint256)
-          handler: delegateVotesChanged
-      file: ./src/mainnet/rari_mapping.ts
-  - kind: ethereum/contract
     name: IndexedToken
     network: mainnet
     source:
