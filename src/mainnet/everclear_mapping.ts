@@ -2,7 +2,7 @@ import {  BigInt } from "@graphprotocol/graph-ts"
 import { DelegateChange, DelegateVotingPowerChange, DelegatingHistory, DelegatorOrganization, Organization, User } from "../../generated/schema"
 import { getDelegateOrganization } from "../shared/getDelegateOrganization"
 import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt"
-import { DelegateChanged, DelegateVotesChanged } from "../../generated/ClearNetwork/NextNetwork"
+import { DelegateChanged, DelegateVotesChanged } from "../../generated/ClearToken/ClearToken"
 
 
 const daoName = 'everclear'
