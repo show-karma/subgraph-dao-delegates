@@ -1,17 +1,11 @@
 import {  BigInt } from "@graphprotocol/graph-ts"
-import {
-  Organization,
-  User,
-  DelegatorOrganization,
-  DelegateVotingPowerChange,
-  DelegateChange,
-  DelegatingHistory
-} from "../../generated/schema"
-import { DelegateChanged, DelegateVotesChanged, Transfer } from "../../generated/Connext/Connext"
+import { DelegateChange, DelegateVotingPowerChange, DelegatingHistory, DelegatorOrganization, Organization, User } from "../../generated/schema"
 import { getDelegateOrganization } from "../shared/getDelegateOrganization"
 import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt"
+import { DelegateChanged, DelegateVotesChanged } from "../../generated/ClearNetwork/NextNetwork"
 
-const daoName = 'connext'
+
+const daoName = 'everclear'
 
 export function handleDelegateChanged(event: DelegateChanged): void {
   let organization = new Organization(daoName)
@@ -36,6 +30,7 @@ export function handleDelegateChanged(event: DelegateChanged): void {
     delegatingHistory.daoName = organization.id;
     delegatingHistory.amount = BigInt.zero();
     delegatingHistory.timestamp = event.block.timestamp;
+    delegatingHistory.contract = event.address.toHexString();
   }
 
   delegatingHistory.fromDelegate = event.params.fromDelegate.toHexString();
@@ -68,7 +63,30 @@ export function handleDelegateVotesChanged(event: DelegateVotesChanged): void {
 
   delegateOrganization.delegate = user.id;
   delegateOrganization.organization = organization.id;
-  delegateOrganization.voteBalance = event.params.newBalance;
+  
+  // Get current balances or initialize them
+  let v1Balance = delegateOrganization.voteBalanceV1;
+  let v2Balance = delegateOrganization.voteBalanceV2;
+  
+  if (!v1Balance) {
+    v1Balance = BigInt.fromI32(0);
+  }
+  if (!v2Balance) {
+    v2Balance = BigInt.fromI32(0);
+  }
+  
+  // Determine which contract triggered the event and update the corresponding balance
+  event.address
+  if (event.address.toHexString().toLowerCase() == "0xFE67A4450907459c3e1FFf623aA927dD4e28c67a".toLowerCase()) {
+    v1Balance = event.params.newBalance;
+  } else {
+    v2Balance = event.params.newBalance;
+  }
+  
+  // Update all balances
+  delegateOrganization.voteBalanceV1 = v1Balance;
+  delegateOrganization.voteBalanceV2 = v2Balance;
+  delegateOrganization.voteBalance = v1Balance.plus(v2Balance);
 
   delegateOrganization.firstTokenDelegatedAt = getFirstTokenDelegatedAt(event, delegateOrganization);
 

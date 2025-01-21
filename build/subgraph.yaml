@@ -11,14 +11,14 @@ dataSources:
       startBlock: 15719153
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.7
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Delegate
         - Delegator
       abis:
         - name: RariFoundation
-          file: RariFoundation/RariFoundation.json
+          file: RariFoundation/abis/RariFoundation.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -41,7 +41,7 @@ dataSources:
         - Delegator
       abis:
         - name: ENSToken
-          file: ENSToken/ENSToken.json
+          file: ENSToken/abis/ENSToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -64,7 +64,7 @@ dataSources:
         - Delegator
       abis:
         - name: GitcoinToken
-          file: GitcoinToken/GitcoinToken.json
+          file: GitcoinToken/abis/GitcoinToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -87,7 +87,7 @@ dataSources:
         - Delegator
       abis:
         - name: IndexToken
-          file: IndexToken/IndexToken.json
+          file: IndexToken/abis/IndexToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -110,7 +110,7 @@ dataSources:
         - Delegator
       abis:
         - name: PoolTogetherToken
-          file: PoolTogetherToken/PoolTogetherToken.json
+          file: PoolTogetherToken/abis/PoolTogetherToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -133,7 +133,7 @@ dataSources:
         - Delegator
       abis:
         - name: UniswapToken
-          file: UniswapToken/UniswapToken.json
+          file: UniswapToken/abis/UniswapToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -156,7 +156,7 @@ dataSources:
         - Delegator
       abis:
         - name: RariToken
-          file: RariToken/RariToken.json
+          file: RariToken/abis/RariToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -179,7 +179,7 @@ dataSources:
         - Delegator
       abis:
         - name: IndexedToken
-          file: IndexedToken/IndexedToken.json
+          file: IndexedToken/abis/IndexedToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -202,7 +202,7 @@ dataSources:
         - Delegator
       abis:
         - name: OlympusToken
-          file: OlympusToken/OlympusToken.json
+          file: OlympusToken/abis/OlympusToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -225,7 +225,7 @@ dataSources:
         - Delegator
       abis:
         - name: AmpleforthToken
-          file: AmpleforthToken/AmpleforthToken.json
+          file: AmpleforthToken/abis/AmpleforthToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -248,7 +248,7 @@ dataSources:
         - Delegator
       abis:
         - name: InverseFinanceToken
-          file: InverseFinanceToken/InverseFinanceToken.json
+          file: InverseFinanceToken/abis/InverseFinanceToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -271,7 +271,7 @@ dataSources:
         - Delegator
       abis:
         - name: FeiProtocolToken
-          file: FeiProtocolToken/FeiProtocolToken.json
+          file: FeiProtocolToken/abis/FeiProtocolToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -294,7 +294,7 @@ dataSources:
         - Delegator
       abis:
         - name: YamFinanceToken
-          file: YamFinanceToken/YamFinanceToken.json
+          file: YamFinanceToken/abis/YamFinanceToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -317,7 +317,7 @@ dataSources:
         - Delegator
       abis:
         - name: CompoundGovernanceToken
-          file: CompoundGovernanceToken/CompoundGovernanceToken.json
+          file: CompoundGovernanceToken/abis/CompoundGovernanceToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -340,7 +340,7 @@ dataSources:
         - Delegator
       abis:
         - name: AaveToken
-          file: AaveToken/AaveToken.json
+          file: AaveToken/abis/AaveToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,uint8)
           handler: delegateChanged
@@ -363,7 +363,7 @@ dataSources:
         - Delegator
       abis:
         - name: SushiSwapToken
-          file: SushiSwapToken/SushiSwapToken.json
+          file: SushiSwapToken/abis/SushiSwapToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -386,7 +386,7 @@ dataSources:
         - Delegator
       abis:
         - name: HopExchangeToken
-          file: HopExchangeToken/HopExchangeToken.json
+          file: HopExchangeToken/abis/HopExchangeToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -409,7 +409,7 @@ dataSources:
         - Delegator
       abis:
         - name: IdleFinanceToken
-          file: IdleFinanceToken/IdleFinanceToken.json
+          file: IdleFinanceToken/abis/IdleFinanceToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -432,7 +432,7 @@ dataSources:
         - Delegator
       abis:
         - name: DYDXToken
-          file: DYDXToken/DyDxToken.json
+          file: DYDXToken/abis/DyDxToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,uint8)
           handler: delegateChanged
@@ -455,7 +455,7 @@ dataSources:
         - Delegator
       abis:
         - name: PaladinToken
-          file: PaladinToken/PaladinVoteABI.json
+          file: PaladinToken/abis/PaladinVoteABI.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: delegateChanged
@@ -478,7 +478,7 @@ dataSources:
         - Delegator
       abis:
         - name: StakedAaveToken
-          file: StakedAaveToken/StakedAaveToken.json
+          file: StakedAaveToken/abis/StakedAaveToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,uint8)
           handler: delegateChanged
@@ -486,25 +486,48 @@ dataSources:
           handler: delegateVotesChanged
       file: AaveToken/AaveToken.wasm
   - kind: ethereum
-    name: Connext
+    name: NextNetwork
     network: mainnet
     source:
-      abi: Connext
+      abi: NextNetwork
       address: "0xFE67A4450907459c3e1FFf623aA927dD4e28c67a"
-      startBlock: 16976695
+      startBlock: 16976600
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - DelegateChanged
         - DelegateVotesChanged
       abis:
-        - name: Connext
-          file: Connext/ConnextABI.json
+        - name: NextNetwork
+          file: NextNetwork/abis/NextToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: handleDelegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: handleDelegateVotesChanged
-      file: Connext/Connext.wasm
+      file: NextNetwork/NextNetwork.wasm
+  - kind: ethereum
+    name: ClearNetwork
+    network: mainnet
+    source:
+      abi: NextNetwork
+      address: "0x58b9cB810A68a7f3e1E4f8Cb45D1B9B3c79705E8"
+      startBlock: 18058700
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DelegateChanged
+        - DelegateVotesChanged
+      abis:
+        - name: NextNetwork
+          file: ClearNetwork/abis/NextNetwork.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+      file: NextNetwork/NextNetwork.wasm
