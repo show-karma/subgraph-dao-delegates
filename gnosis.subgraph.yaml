@@ -26,10 +26,10 @@ dataSources:
           handler: handleDelegateVotesChanged
       file: ./src/mainnet/everclear_mapping.ts
   - kind: ethereum
-    name: Clear
+    name: ClearToken
     network: gnosis
     source:
-      abi: Clear
+      abi: ClearToken
       address: "0x58b9cB810A68a7f3e1E4f8Cb45D1B9B3c79705E8"
       startBlock: 29795027
     mapping:
@@ -40,7 +40,7 @@ dataSources:
         - DelegateChanged
         - DelegateVotesChanged
       abis:
-        - name: Clear
+        - name: ClearToken
           file: ./abis/ClearToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
