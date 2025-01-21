@@ -802,3 +802,39 @@ export class DelegatorOrganizationLoader extends Entity {
     return changetype<DelegatorOrganization[]>(value);
   }
 }
+
+export class DelegateOrganizationLoader extends Entity {
+  _entity: string;
+  _field: string;
+  _id: string;
+
+  constructor(entity: string, id: string, field: string) {
+    super();
+    this._entity = entity;
+    this._id = id;
+    this._field = field;
+  }
+
+  load(): DelegateOrganization[] {
+    let value = store.loadRelated(this._entity, this._id, this._field);
+    return changetype<DelegateOrganization[]>(value);
+  }
+}
+
+export class DelegatorOrganizationLoader extends Entity {
+  _entity: string;
+  _field: string;
+  _id: string;
+
+  constructor(entity: string, id: string, field: string) {
+    super();
+    this._entity = entity;
+    this._id = id;
+    this._field = field;
+  }
+
+  load(): DelegatorOrganization[] {
+    let value = store.loadRelated(this._entity, this._id, this._field);
+    return changetype<DelegatorOrganization[]>(value);
+  }
+}
