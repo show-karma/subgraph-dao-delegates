@@ -9,7 +9,7 @@
     "remove-local": "node_modules/.bin/graph remove --node http://localhost:8020/ dao-delegates",
     "deploy-local": "node_modules/.bin/graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dao-delegates",
 
-    "deploy:mainnet": "node_modules/.bin/graph codegen subgraph.yaml && node_modules/.bin/graph build subgraph.yaml && node_modules/.bin/graph deploy --studio subgraph-dao-delegates"
+    "deploy:mainnet": "node_modules/.bin/graph codegen subgraph.yaml && node_modules/.bin/graph build subgraph.yaml && node_modules/.bin/graph deploy --studio dao-delegates"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.82.0",
