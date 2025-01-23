@@ -220,6 +220,40 @@ export class DelegateOrganization extends Entity {
     this.set("voteBalance", Value.fromBigInt(value));
   }
 
+  get voteBalanceV1(): BigInt | null {
+    let value = this.get("voteBalanceV1");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set voteBalanceV1(value: BigInt | null) {
+    if (!value) {
+      this.unset("voteBalanceV1");
+    } else {
+      this.set("voteBalanceV1", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
+  get voteBalanceV2(): BigInt | null {
+    let value = this.get("voteBalanceV2");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set voteBalanceV2(value: BigInt | null) {
+    if (!value) {
+      this.unset("voteBalanceV2");
+    } else {
+      this.set("voteBalanceV2", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
   get firstTokenDelegatedAt(): BigInt | null {
     let value = this.get("firstTokenDelegatedAt");
     if (!value || value.kind == ValueKind.NULL) {
@@ -717,6 +751,55 @@ export class DelegatingHistory extends Entity {
 
   set timestamp(value: BigInt) {
     this.set("timestamp", Value.fromBigInt(value));
+  }
+
+  get contract(): string {
+    let value = this.get("contract");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set contract(value: string) {
+    this.set("contract", Value.fromString(value));
+  }
+}
+
+export class DelegateOrganizationLoader extends Entity {
+  _entity: string;
+  _field: string;
+  _id: string;
+
+  constructor(entity: string, id: string, field: string) {
+    super();
+    this._entity = entity;
+    this._id = id;
+    this._field = field;
+  }
+
+  load(): DelegateOrganization[] {
+    let value = store.loadRelated(this._entity, this._id, this._field);
+    return changetype<DelegateOrganization[]>(value);
+  }
+}
+
+export class DelegatorOrganizationLoader extends Entity {
+  _entity: string;
+  _field: string;
+  _id: string;
+
+  constructor(entity: string, id: string, field: string) {
+    super();
+    this._entity = entity;
+    this._id = id;
+    this._field = field;
+  }
+
+  load(): DelegatorOrganization[] {
+    let value = store.loadRelated(this._entity, this._id, this._field);
+    return changetype<DelegatorOrganization[]>(value);
   }
 }
 

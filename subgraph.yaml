@@ -463,25 +463,49 @@ dataSources:
           handler: delegateVotesChanged
       file: ./src/mainnet/aave_mapping.ts
   - kind: ethereum
-    name: Connext
+    name: NextToken
     network: mainnet
     source:
-      abi: Connext
+      abi: NextToken
       address: "0xFE67A4450907459c3e1FFf623aA927dD4e28c67a"
-      startBlock: 16976695
+      startBlock: 16976600
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - DelegateChanged
         - DelegateVotesChanged
       abis:
-        - name: Connext
-          file: ./abis/ConnextABI.json
+        - name: NextToken
+          file: ./abis/NextToken.json
       eventHandlers:
         - event: DelegateChanged(indexed address,indexed address,indexed address)
           handler: handleDelegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: handleDelegateVotesChanged
-      file: ./src/mainnet/connext_mapping.ts
+      file: ./src/mainnet/everclear_mapping.ts
+  - kind: ethereum
+    name: ClearToken
+    network: mainnet
+    source:
+      abi: ClearToken
+      address: "0x58b9cB810A68a7f3e1E4f8Cb45D1B9B3c79705E8"
+      startBlock: 18058700
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DelegateChanged
+        - DelegateVotesChanged
+      abis:
+        - name: ClearToken
+          file: ./abis/ClearToken.json
+      eventHandlers:
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+      file: ./src/mainnet/everclear_mapping.ts
+
