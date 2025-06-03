@@ -2,8 +2,8 @@ import { BigInt, ethereum } from "@graphprotocol/graph-ts";
 
 import { getDelegateOrganization } from "../shared/getDelegateOrganization";
 import { getFirstTokenDelegatedAt } from "../shared/getFirstTokenDelegatedAt";
-import { DelegateChange, DelegateVotingPowerChange, DelegatingHistory, DelegatorOrganization, Organization, User } from "../../generated/schema";
-import { Delegate, DelegateChanged, DelegateVotesChanged } from "../../generated/RariFoundation/RariFoundation"
+import { DelegateChange, DelegateVotingPowerChange, DelegatingHistory, DelegatorOrganization, Organization, User, Lock } from "../../generated/schema";
+import { Delegate, DelegateChanged, DelegateVotesChanged, LockCreate } from "../../generated/RariFoundation/RariFoundation"
 const daoName = "rarifoundation";
 
 
@@ -126,3 +126,21 @@ export function delegateVotesChanged(event: DelegateVotesChanged): void {
   delegatePowerChange.save();
 }
 
+export function handleLockCreate(event: LockCreate): void {
+  let organization = new Organization(daoName);
+  organization.token = "rari";
+  organization.save();
+
+  // Create Lock entity with event.params.id as the ID
+  const lock = new Lock(event.params.id.toString());
+  lock.account = event.params.account.toHexString();
+  lock.amount = event.params.amount;
+  lock.cliff = event.params.cliff;
+  lock.delegate = event.params.delegate.toHexString();
+  lock.slopePeriod = event.params.slopePeriod;
+  lock.time = event.params.time;
+  lock.blockTimestamp = event.block.timestamp;
+  lock.txnHash = event.transaction.hash.toHexString();
+  lock.blockNumber = event.block.number;
+  lock.save();
+}
