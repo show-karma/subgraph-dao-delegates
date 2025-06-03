@@ -60,3 +60,16 @@ type DelegatingHistory @entity {
   timestamp: BigInt!
   contract: String!
 }
+
+type Lock @entity {
+  id: ID! # Set to event.params.id
+  account: String!
+  amount: BigInt!
+  cliff: BigInt!
+  delegate: String!
+  slopePeriod: BigInt!
+  time: BigInt!
+  blockTimestamp: BigInt!
+  txnHash: String!
+  blockNumber: BigInt!
+}

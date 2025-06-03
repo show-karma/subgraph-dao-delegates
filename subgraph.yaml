@@ -8,10 +8,10 @@ dataSources:
     source:
       address: "0x096Bd9a7a2e703670088C05035e23c7a9F428496"
       abi: RariFoundation
-      startBlock: 15719153
+      startBlock: 15669279
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
         - Delegate
@@ -24,6 +24,8 @@ dataSources:
           handler: delegateChanged
         - event: DelegateVotesChanged(indexed address,uint256,uint256)
           handler: delegateVotesChanged
+        - event: LockCreate(indexed uint256,indexed address,indexed address,uint256,uint256,uint256,uint256)
+          handler: handleLockCreate
       file: ./src/mainnet/rari-foundation.ts
   - kind: ethereum/contract
     name: ENSToken
